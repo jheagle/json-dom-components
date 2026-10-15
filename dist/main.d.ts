@@ -38,4 +38,4 @@ declare const jsonDomComponents: {
     textArea: (name?: string, children?: import("json-dom/dist/domItem/types").DomItem[], className?: string, attributes?: import("json-dom/dist/domItem/types").Attributes) => import("json-dom/dist/domItem/types").DomItem;
     unorderedList: (children?: import("json-dom/dist/domItem/types").DomItem[], className?: string, attributes?: import("json-dom/dist/domItem/types").Attributes) => import("json-dom/dist/domItem/types").DomItem;
 };
-export default jsonDomComponents;
+export = jsonDomComponents;

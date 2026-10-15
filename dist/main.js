@@ -5,9 +5,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
     "default": mod
   };
 };
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 /**
  * A minimal component library on json-dom: base HTML element factories plus richer interactive components.
  */
@@ -25,4 +22,4 @@ const jsonDomComponents = {
   ...index_1.default
 };
 root.jsonDomComponents = jsonDomComponents;
-exports.default = jsonDomComponents;
+module.exports = jsonDomComponents;
