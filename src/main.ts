@@ -19,4 +19,4 @@ const jsonDomComponents = {
 
 root.jsonDomComponents = jsonDomComponents
 
-export default jsonDomComponents
+export = jsonDomComponents

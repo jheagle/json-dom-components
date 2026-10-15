@@ -744,9 +744,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
     "default": mod
   };
 };
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 /**
  * A minimal component library on json-dom: base HTML element factories plus richer interactive components.
  */
@@ -764,7 +761,7 @@ const jsonDomComponents = {
   ...index_1.default
 };
 root.jsonDomComponents = jsonDomComponents;
-exports.default = jsonDomComponents;
+module.exports = jsonDomComponents;
 },{"./clearableInput/index":3,"./components/index":14,"./typeahead/index":42,"core-js/stable":750}],39:[function(require,module,exports){
 "use strict";
 
