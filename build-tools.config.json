@@ -1,0 +1,14 @@
+{
+  "browser": {
+    "name": "jsonDomComponents"
+  },
+  "docs": {
+    "enabled": true,
+    "from": "src",
+    "index": "MAIN.md"
+  },
+  "typescript": {
+    "config": "tsconfig.json",
+    "enabled": true
+  }
+}

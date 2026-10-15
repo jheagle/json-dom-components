@@ -1,0 +1,20 @@
+/*
+ * Minimum styling for the typeahead component: positions the options list as a real dropdown under the
+ * free-type input. The show/hide behaviour itself needs no CSS - it's the native `hidden` attribute.
+ */
+.typeahead {
+  position: relative;
+  display: inline-block;
+}
+
+.typeahead-search {
+  display: block;
+}
+
+.typeahead-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+}

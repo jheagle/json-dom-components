@@ -1,0 +1,52 @@
+{
+  "name": "json-dom-components",
+  "private": true,
+  "description": "A minimal component library on json-dom: base HTML element factories plus richer interactive components.",
+  "version": "0.1.0",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "author": "Joshua Heagle",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp",
+    "docs": "gulp docs",
+    "release": "release-it",
+    "release:dry-run": "release-it --dry-run",
+    "test": "gulp testFull",
+    "test:quick": "gulp testQuick",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "watch": "gulp watchFull",
+    "watch:test": "gulp watchTest"
+  },
+  "devDependencies": {
+    "js-build-tools": "^6.2.0",
+    "json-dom": "github:jheagle/JSON-DOM",
+    "release-it": "^21.1.1",
+    "test-filesystem": "^2.0.0",
+    "typedoc": "^0.28.20",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "si-funciona": "^2.7.3"
+  },
+  "peerDependencies": {
+    "json-dom": ">=1.8.1"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jheagle/json-dom-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jheagle/json-dom-components/issues"
+  },
+  "homepage": "https://github.com/jheagle/json-dom-components#readme",
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  }
+}
