@@ -1,2 +1,6 @@
 
 /node_modules
+
+# Generated locally by `npm run docs` - no docs.to destination wired up yet (not integrated into the website
+# yet), so this is disposable until that happens.
+/docs
