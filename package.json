@@ -17,10 +17,11 @@
     "test:quick": "gulp testQuick",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "watch": "gulp watchFull",
-    "watch:test": "gulp watchTest"
+    "watch:test": "gulp watchTest",
+    "lint": "gulp lint"
   },
   "devDependencies": {
-    "js-build-tools": "^6.2.0",
+    "js-build-tools": "^6.4.1",
     "json-dom": "github:jheagle/JSON-DOM",
     "release-it": "^21.1.1",
     "test-filesystem": "^2.0.0",
@@ -48,5 +49,11 @@
     "env": [
       "jest"
     ]
+  },
+  "allowScripts": {
+    "core-js": false,
+    "core-js-pure": false,
+    "@parcel/watcher": false,
+    "unrs-resolver": false
   }
 }
