@@ -5,7 +5,9 @@
   "docs": {
     "enabled": true,
     "from": "src",
-    "index": "MAIN.md"
+    "index": "MAIN.md",
+    "inBuild": false,
+    "gitRevision": "main"
   },
   "typescript": {
     "config": "tsconfig.json",
