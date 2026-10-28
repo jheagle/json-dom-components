@@ -8,7 +8,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 /**
  * A minimal component library on json-dom: base HTML element factories plus richer interactive components.
  */
-require("core-js/stable");
 const index_1 = __importDefault(require("./clearableInput/index"));
 const index_2 = __importDefault(require("./components/index"));
 const index_3 = __importDefault(require("./typeahead/index"));
