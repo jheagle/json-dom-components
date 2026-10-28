@@ -1,7 +1,3 @@
-/**
- * A minimal component library on json-dom: base HTML element factories plus richer interactive components.
- */
-import 'core-js/stable';
 declare const jsonDomComponents: {
     createClearableInput: (config: import("./clearableInput/types").ClearableInputConfig) => import("json-dom/dist/domItem/types").DomItem;
     createTypeahead: (config: import("./typeahead/types").TypeaheadConfig) => import("json-dom/dist/domItem/types").DomItem;

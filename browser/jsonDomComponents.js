@@ -747,7 +747,6 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 /**
  * A minimal component library on json-dom: base HTML element factories plus richer interactive components.
  */
-require("core-js/stable");
 const index_1 = __importDefault(require("./clearableInput/index"));
 const index_2 = __importDefault(require("./components/index"));
 const index_3 = __importDefault(require("./typeahead/index"));
@@ -762,7 +761,7 @@ const jsonDomComponents = {
 };
 root.jsonDomComponents = jsonDomComponents;
 module.exports = jsonDomComponents;
-},{"./clearableInput/index":3,"./components/index":14,"./typeahead/index":42,"core-js/stable":756}],39:[function(require,module,exports){
+},{"./clearableInput/index":3,"./components/index":14,"./typeahead/index":42}],39:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/esnext.iterator.constructor.js");
