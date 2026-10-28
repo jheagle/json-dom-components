@@ -1,7 +1,6 @@
 /**
  * A minimal component library on json-dom: base HTML element factories plus richer interactive components.
  */
-import 'core-js/stable'
 import clearableInput from './clearableInput/index'
 import components from './components/index'
 import typeahead from './typeahead/index'
