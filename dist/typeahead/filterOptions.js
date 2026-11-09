@@ -1,8 +1,6 @@
 "use strict";
 
 require("core-js/modules/es.array.includes.js");
-require("core-js/modules/esnext.iterator.constructor.js");
-require("core-js/modules/esnext.iterator.for-each.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });

@@ -1,8 +1,5 @@
 "use strict";
 
-require("core-js/modules/esnext.iterator.constructor.js");
-require("core-js/modules/esnext.iterator.find.js");
-require("core-js/modules/esnext.iterator.map.js");
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
