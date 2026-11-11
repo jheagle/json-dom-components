@@ -50,3 +50,7 @@ the native `hidden` attribute.
 
 Not published to npm (not an npm package) - versioned via git tags/GitHub Releases only (`npm run release`).
 Not yet wired into `quizzes`/`workout-planner`/the website - that's the next step, once this is reviewed.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
