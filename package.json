@@ -6,7 +6,7 @@
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "author": "Joshua Heagle",
-  "license": "MIT",
+  "license": "MPL-2.0",
   "scripts": {
     "build": "gulp build",
     "dev": "gulp",

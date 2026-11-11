@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 /**
  * Base HTML element factories: thin DomItem wrappers matching real HTML elements, ported and reconciled from
  * the component templates duplicated across quizzes, workout-planner and the website.
