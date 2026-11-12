@@ -1,5 +1,1 @@
 * text=auto eol=lf
-
-# Committed build output: generated, so GitHub collapses it in PR diffs and leaves it out of language stats
-dist/** linguist-generated=true
-browser/** linguist-generated=true

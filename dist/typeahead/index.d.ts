@@ -1,5 +1,0 @@
-declare const _default: {
-    createTypeahead: (config: import("./types").TypeaheadConfig) => import("treeloom/dist/domItem/types").DomItem;
-};
-export default _default;
-export type { TypeaheadConfig, TypeaheadOption } from './types';
