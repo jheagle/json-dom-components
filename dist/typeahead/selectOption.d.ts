@@ -1,4 +1,4 @@
-import type { DomItem } from 'json-dom/dist/domItem/types';
+import type { DomItem } from 'treeloom/dist/domItem/types';
 import type { TypeaheadOption } from './types';
 /**
  * A pick was made (directly, or via the select's own change event): copy the matching option's label back into

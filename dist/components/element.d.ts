@@ -1,4 +1,4 @@
-import type { Attributes, DomItem } from 'json-dom/dist/domItem/types';
+import type { Attributes, DomItem } from 'treeloom/dist/domItem/types';
 /**
  * Create the DomItem of a real HTML element.
  * @param nodeName - a tag name, e.g. 'div'

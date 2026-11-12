@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import toggleClearButton from './toggleClearButton'
-import type { DomItem } from 'json-dom/dist/domItem/types'
+import type { DomItem } from 'treeloom/dist/domItem/types'
 
 /**
  * Clear the input's real value and its attributes (so it stays correct across a re-render), hide the clear

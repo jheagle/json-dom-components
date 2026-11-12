@@ -9,7 +9,7 @@ import select from '../components/select'
 import { makeFilterOptions } from './filterOptions'
 import { makeHideList } from './hideList'
 import { makeSelectOption } from './selectOption'
-import type { DomItem } from 'json-dom/dist/domItem/types'
+import type { DomItem } from 'treeloom/dist/domItem/types'
 import type { TypeaheadConfig } from './types'
 
 /**
@@ -19,11 +19,11 @@ import type { TypeaheadConfig } from './types'
  *
  * Ported from a PHP Blade reference implementation, reusing its two-field shape (visible free-type input +
  * collapsed select holding the real value) and its filtering rules (case-insensitive match on value or label,
- * list only expands once there are 2+ characters typed and at least one match) - but wired through json-dom's
+ * list only expands once there are 2+ characters typed and at least one match) - but wired through treeloom's
  * own DomItem tree (via eventListeners set directly on each item, bound automatically on render) instead of
  * attaching to the real DOM by hand.
  *
- * This is a minimum/POC implementation: listeners are plain closures, not names registered for json-dom's
+ * This is a minimum/POC implementation: listeners are plain closures, not names registered for treeloom's
  * render-only/forwarding mode - fine for a component built and rendered locally, not yet for one whose events
  * need forwarding across a socket. See MAIN.md.
  */

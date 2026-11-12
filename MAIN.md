@@ -1,12 +1,12 @@
-# json-dom-components
+# treeloom-components
 
-A minimal component library on [json-dom](https://github.com/jheagle/JSON-DOM): a set of base HTML element
+A minimal component library on [treeloom](https://github.com/jheagle/treeloom): a set of base HTML element
 factories, plus richer interactive components built on top of them.
 
 ## Why this exists
 
 Three projects (`quizzes`, `workout-planner`, the website) had each grown their own, slightly-diverged copy of
-the same small set of "build a `<div>`/`<input>`/`<label>`/..." json-dom factory functions. This package is
+the same small set of "build a `<div>`/`<input>`/`<label>`/..." treeloom factory functions. This package is
 those functions ported into one place and reconciled, plus a home for new, richer components none of those
 projects had yet - starting with a typeahead.
 
@@ -16,13 +16,13 @@ need for it shows up.
 
 ## Base components (`src/components`)
 
-Thin wrappers around `jsonDom.createDomItem`, one function per real HTML element: `anchor`, `button`, `div`,
+Thin wrappers around `treeloom.createDomItem`, one function per real HTML element: `anchor`, `button`, `div`,
 `element` (the one every other wrapper builds on), `fieldset`, `footer`, `form`, `header`, `heading`, `input`,
 `label`, `legend`, `listItem`, `main`, `nav`, `node` (the actual base, wraps `createDomItem` directly), `option`,
 `paragraph`, `radio`, `select`, `span`, `style`, `submit`, `table`/`tableBody`/`tableData`/`tableHead`/
 `tableHeading`/`tableRow`, `text`, `textArea`, `unorderedList`.
 
-Each one returns a `DomItem` - compose them the same way you would real HTML, then render with json-dom's own
+Each one returns a `DomItem` - compose them the same way you would real HTML, then render with treeloom's own
 `renderHtml`/`documentDomItem` as usual.
 
 ## Typeahead (`src/typeahead`)
@@ -34,12 +34,12 @@ free-type input and collapses the list again.
 
 Ported from a PHP Blade reference implementation - same two-field shape, same filtering rule (case-insensitive
 match on value or label text, list only expands once 2+ characters are typed and something matches) - but
-wired through json-dom's own `eventListeners` (bound automatically wherever the component gets rendered)
+wired through treeloom's own `eventListeners` (bound automatically wherever the component gets rendered)
 instead of attaching to the real DOM by hand.
 
 **Known POC limitation:** the typeahead's listeners are plain closures (`listenerFunc` set directly to a
-function), not names registered through json-dom's `registerListener`. That's fine for a component rendered
-and used locally, but it means this component's events can't currently be forwarded across json-dom's
+function), not names registered through treeloom's `registerListener`. That's fine for a component rendered
+and used locally, but it means this component's events can't currently be forwarded across treeloom's
 render-only/socket mode (see battleship's own remote play for what that mode looks like) - revisit if a
 consumer ever needs that.
 

@@ -1,5 +1,5 @@
 "use strict";
-var jsonDomComponents = (() => {
+var treeloomComponents = (() => {
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __esm = (fn, res, err) => function __init() {
     if (err) throw err[0];
@@ -4259,9 +4259,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/tree/getTopParentItem.js
+  // node_modules/treeloom/dist/domItem/tree/getTopParentItem.js
   var require_getTopParentItem = __commonJS({
-    "node_modules/json-dom/dist/domItem/tree/getTopParentItem.js"(exports) {
+    "node_modules/treeloom/dist/domItem/tree/getTopParentItem.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -4286,9 +4286,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/makeEventHandler.js
+  // node_modules/treeloom/dist/events/functions/makeEventHandler.js
   var require_makeEventHandler = __commonJS({
-    "node_modules/json-dom/dist/events/functions/makeEventHandler.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/makeEventHandler.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -4306,9 +4306,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/objects/createEventResponder.js
+  // node_modules/treeloom/dist/events/objects/createEventResponder.js
   var require_createEventResponder = __commonJS({
-    "node_modules/json-dom/dist/events/objects/createEventResponder.js"(exports) {
+    "node_modules/treeloom/dist/events/objects/createEventResponder.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -4331,9 +4331,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/objects/options/getListenerOptions.js
+  // node_modules/treeloom/dist/events/objects/options/getListenerOptions.js
   var require_getListenerOptions = __commonJS({
-    "node_modules/json-dom/dist/events/objects/options/getListenerOptions.js"(exports) {
+    "node_modules/treeloom/dist/events/objects/options/getListenerOptions.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -4353,9 +4353,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/objects/options/optionsToNumber.js
+  // node_modules/treeloom/dist/events/objects/options/optionsToNumber.js
   var require_optionsToNumber = __commonJS({
-    "node_modules/json-dom/dist/events/objects/options/optionsToNumber.js"(exports) {
+    "node_modules/treeloom/dist/events/objects/options/optionsToNumber.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -4374,6 +4374,23 @@ var jsonDomComponents = (() => {
         return si_funciona_1.default.reduceObject(optionsTemplate, (binaryOptions, flag, name) => listenerOptions[name] ? binaryOptions | flag : binaryOptions, 0);
       };
       exports.default = optionsToNumber;
+    }
+  });
+
+  // node_modules/treeloom/dist/domItem/tree/appendChild.js
+  var require_appendChild = __commonJS({
+    "node_modules/treeloom/dist/domItem/tree/appendChild.js"(exports) {
+      "use strict";
+      init_process();
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      var appendChild = (parent, child) => {
+        parent.children.push(child);
+        child.parentItem = parent;
+        return parent;
+      };
+      exports.default = appendChild;
     }
   });
 
@@ -4557,312 +4574,6 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/core-js/internals/get-iterator-direct.js
-  var require_get_iterator_direct = __commonJS({
-    "node_modules/core-js/internals/get-iterator-direct.js"(exports, module) {
-      "use strict";
-      init_process();
-      module.exports = function(obj) {
-        return {
-          iterator: obj,
-          next: obj.next,
-          done: false
-        };
-      };
-    }
-  });
-
-  // node_modules/core-js/internals/define-built-ins.js
-  var require_define_built_ins = __commonJS({
-    "node_modules/core-js/internals/define-built-ins.js"(exports, module) {
-      "use strict";
-      init_process();
-      var defineBuiltIn = require_define_built_in();
-      module.exports = function(target, src, options) {
-        for (var key in src) defineBuiltIn(target, key, src[key], options);
-        return target;
-      };
-    }
-  });
-
-  // node_modules/core-js/internals/create-iter-result-object.js
-  var require_create_iter_result_object = __commonJS({
-    "node_modules/core-js/internals/create-iter-result-object.js"(exports, module) {
-      "use strict";
-      init_process();
-      module.exports = function(value, done) {
-        return { value, done };
-      };
-    }
-  });
-
-  // node_modules/core-js/internals/iterator-close.js
-  var require_iterator_close = __commonJS({
-    "node_modules/core-js/internals/iterator-close.js"(exports, module) {
-      "use strict";
-      init_process();
-      var call = require_function_call();
-      var anObject = require_an_object();
-      var getMethod = require_get_method();
-      module.exports = function(iterator, kind, value) {
-        var innerResult, innerError;
-        anObject(iterator);
-        try {
-          innerResult = getMethod(iterator, "return");
-          if (!innerResult) {
-            if (kind === "throw") throw value;
-            return value;
-          }
-          innerResult = call(innerResult, iterator);
-        } catch (error) {
-          innerError = true;
-          innerResult = error;
-        }
-        if (kind === "throw") throw value;
-        if (innerError) throw innerResult;
-        anObject(innerResult);
-        return value;
-      };
-    }
-  });
-
-  // node_modules/core-js/internals/iterator-close-all.js
-  var require_iterator_close_all = __commonJS({
-    "node_modules/core-js/internals/iterator-close-all.js"(exports, module) {
-      "use strict";
-      init_process();
-      var iteratorClose = require_iterator_close();
-      module.exports = function(iters, kind, value) {
-        for (var i = iters.length - 1; i >= 0; i--) {
-          if (iters[i] === void 0) continue;
-          try {
-            value = iteratorClose(iters[i].iterator, kind, value);
-          } catch (error) {
-            kind = "throw";
-            value = error;
-          }
-        }
-        if (kind === "throw") throw value;
-        return value;
-      };
-    }
-  });
-
-  // node_modules/core-js/internals/iterator-cleanup-state.js
-  var require_iterator_cleanup_state = __commonJS({
-    "node_modules/core-js/internals/iterator-cleanup-state.js"(exports, module) {
-      "use strict";
-      init_process();
-      module.exports = function(state) {
-        state.iterator = state.next = state.nextHandler = state.mapper = state.predicate = state.inner = state.iterables = state.iters = state.openIters = state.padding = state.finishResults = state.buffer = null;
-      };
-    }
-  });
-
-  // node_modules/core-js/internals/iterator-create-proxy.js
-  var require_iterator_create_proxy = __commonJS({
-    "node_modules/core-js/internals/iterator-create-proxy.js"(exports, module) {
-      "use strict";
-      init_process();
-      var call = require_function_call();
-      var create = require_object_create();
-      var createNonEnumerableProperty = require_create_non_enumerable_property();
-      var defineBuiltIns = require_define_built_ins();
-      var wellKnownSymbol = require_well_known_symbol();
-      var InternalStateModule = require_internal_state();
-      var getMethod = require_get_method();
-      var IteratorPrototype = require_iterators_core().IteratorPrototype;
-      var createIterResultObject = require_create_iter_result_object();
-      var iteratorClose = require_iterator_close();
-      var iteratorCloseAll = require_iterator_close_all();
-      var cleanupState = require_iterator_cleanup_state();
-      var TO_STRING_TAG = wellKnownSymbol("toStringTag");
-      var ITERATOR_HELPER = "IteratorHelper";
-      var WRAP_FOR_VALID_ITERATOR = "WrapForValidIterator";
-      var NORMAL = "normal";
-      var THROW = "throw";
-      var setInternalState = InternalStateModule.set;
-      var createIteratorProxyPrototype = function(IS_ITERATOR) {
-        var getInternalState = InternalStateModule.getterFor(IS_ITERATOR ? WRAP_FOR_VALID_ITERATOR : ITERATOR_HELPER);
-        return defineBuiltIns(create(IteratorPrototype), {
-          next: function next() {
-            var state = getInternalState(this);
-            if (IS_ITERATOR) return state.nextHandler();
-            if (state.done) return createIterResultObject(void 0, true);
-            try {
-              var result = state.nextHandler();
-              if (state.done) cleanupState(state);
-              return state.returnHandlerResult ? result : createIterResultObject(result, state.done);
-            } catch (error) {
-              state.done = true;
-              cleanupState(state);
-              throw error;
-            }
-          },
-          "return": function() {
-            var state = getInternalState(this);
-            var iterator = state.iterator;
-            var inner = state.inner;
-            var openIters = state.openIters;
-            var done = state.done;
-            state.done = true;
-            if (IS_ITERATOR) {
-              var returnMethod = getMethod(iterator, "return");
-              return returnMethod ? call(returnMethod, iterator) : createIterResultObject(void 0, true);
-            }
-            cleanupState(state);
-            if (done) return createIterResultObject(void 0, true);
-            if (inner) try {
-              iteratorClose(inner.iterator, NORMAL);
-            } catch (error) {
-              return iteratorClose(iterator, THROW, error);
-            }
-            if (openIters) try {
-              iteratorCloseAll(openIters, NORMAL);
-            } catch (error) {
-              if (iterator) return iteratorClose(iterator, THROW, error);
-              throw error;
-            }
-            if (iterator) iteratorClose(iterator, NORMAL);
-            return createIterResultObject(void 0, true);
-          }
-        });
-      };
-      var WrapForValidIteratorPrototype = createIteratorProxyPrototype(true);
-      var IteratorHelperPrototype = createIteratorProxyPrototype(false);
-      createNonEnumerableProperty(IteratorHelperPrototype, TO_STRING_TAG, "Iterator Helper");
-      module.exports = function(nextHandler, IS_ITERATOR, RETURN_HANDLER_RESULT) {
-        var IteratorProxy = function Iterator2(record, state) {
-          if (state) {
-            state.iterator = record.iterator;
-            state.next = record.next;
-          } else state = record;
-          state.type = IS_ITERATOR ? WRAP_FOR_VALID_ITERATOR : ITERATOR_HELPER;
-          state.returnHandlerResult = !!RETURN_HANDLER_RESULT;
-          state.nextHandler = nextHandler;
-          state.counter = 0;
-          state.done = false;
-          setInternalState(this, state);
-        };
-        IteratorProxy.prototype = IS_ITERATOR ? WrapForValidIteratorPrototype : IteratorHelperPrototype;
-        return IteratorProxy;
-      };
-    }
-  });
-
-  // node_modules/core-js/internals/call-with-safe-iteration-closing.js
-  var require_call_with_safe_iteration_closing = __commonJS({
-    "node_modules/core-js/internals/call-with-safe-iteration-closing.js"(exports, module) {
-      "use strict";
-      init_process();
-      var anObject = require_an_object();
-      var iteratorClose = require_iterator_close();
-      module.exports = function(iterator, fn, value, ENTRIES) {
-        try {
-          return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value);
-        } catch (error) {
-          iteratorClose(iterator, "throw", error);
-        }
-      };
-    }
-  });
-
-  // node_modules/core-js/internals/iterator-helper-throws-on-invalid-iterator.js
-  var require_iterator_helper_throws_on_invalid_iterator = __commonJS({
-    "node_modules/core-js/internals/iterator-helper-throws-on-invalid-iterator.js"(exports, module) {
-      "use strict";
-      init_process();
-      module.exports = function(methodName, argument) {
-        var method = typeof Iterator == "function" && Iterator.prototype[methodName];
-        if (method) try {
-          method.call({ next: null }, argument).next();
-        } catch (error) {
-          return true;
-        }
-      };
-    }
-  });
-
-  // node_modules/core-js/internals/iterator-helper-without-closing-on-early-error.js
-  var require_iterator_helper_without_closing_on_early_error = __commonJS({
-    "node_modules/core-js/internals/iterator-helper-without-closing-on-early-error.js"(exports, module) {
-      "use strict";
-      init_process();
-      var globalThis2 = require_global_this();
-      module.exports = function(METHOD_NAME, ExpectedError) {
-        var Iterator2 = globalThis2.Iterator;
-        var IteratorPrototype = Iterator2 && Iterator2.prototype;
-        var method = IteratorPrototype && IteratorPrototype[METHOD_NAME];
-        var CLOSED = false;
-        if (method) try {
-          method.call({
-            next: function() {
-              return { done: true };
-            },
-            "return": function() {
-              CLOSED = true;
-            }
-          }, -1);
-        } catch (error) {
-          if (!(error instanceof ExpectedError)) CLOSED = false;
-        }
-        if (!CLOSED) return method;
-      };
-    }
-  });
-
-  // node_modules/core-js/modules/es.iterator.map.js
-  var require_es_iterator_map = __commonJS({
-    "node_modules/core-js/modules/es.iterator.map.js"() {
-      "use strict";
-      init_process();
-      var $ = require_export();
-      var call = require_function_call();
-      var aCallable = require_a_callable();
-      var anObject = require_an_object();
-      var getIteratorDirect = require_get_iterator_direct();
-      var createIteratorProxy = require_iterator_create_proxy();
-      var callWithSafeIterationClosing = require_call_with_safe_iteration_closing();
-      var iteratorClose = require_iterator_close();
-      var iteratorHelperThrowsOnInvalidIterator = require_iterator_helper_throws_on_invalid_iterator();
-      var iteratorHelperWithoutClosingOnEarlyError = require_iterator_helper_without_closing_on_early_error();
-      var IS_PURE = require_is_pure();
-      var MAP_WITHOUT_THROWING_ON_INVALID_ITERATOR = !IS_PURE && !iteratorHelperThrowsOnInvalidIterator("map", function() {
-      });
-      var mapWithoutClosingOnEarlyError = !IS_PURE && !MAP_WITHOUT_THROWING_ON_INVALID_ITERATOR && iteratorHelperWithoutClosingOnEarlyError("map", TypeError);
-      var FORCED = IS_PURE || MAP_WITHOUT_THROWING_ON_INVALID_ITERATOR || mapWithoutClosingOnEarlyError;
-      var IteratorProxy = createIteratorProxy(function() {
-        var iterator = this.iterator;
-        var result = anObject(call(this.next, iterator));
-        var done = this.done = !!result.done;
-        if (!done) return callWithSafeIterationClosing(iterator, this.mapper, [result.value, this.counter++], true);
-      });
-      $({ target: "Iterator", proto: true, real: true, forced: FORCED }, {
-        map: function map(mapper) {
-          anObject(this);
-          try {
-            aCallable(mapper);
-          } catch (error) {
-            iteratorClose(this, "throw", error);
-          }
-          if (mapWithoutClosingOnEarlyError) return call(mapWithoutClosingOnEarlyError, this, mapper);
-          return new IteratorProxy(getIteratorDirect(this), {
-            mapper
-          });
-        }
-      });
-    }
-  });
-
-  // node_modules/core-js/modules/esnext.iterator.map.js
-  var require_esnext_iterator_map = __commonJS({
-    "node_modules/core-js/modules/esnext.iterator.map.js"() {
-      "use strict";
-      init_process();
-      require_es_iterator_map();
-    }
-  });
-
   // node_modules/core-js/internals/function-uncurry-this-clause.js
   var require_function_uncurry_this_clause = __commonJS({
     "node_modules/core-js/internals/function-uncurry-this-clause.js"(exports, module) {
@@ -4954,6 +4665,36 @@ var jsonDomComponents = (() => {
     }
   });
 
+  // node_modules/core-js/internals/iterator-close.js
+  var require_iterator_close = __commonJS({
+    "node_modules/core-js/internals/iterator-close.js"(exports, module) {
+      "use strict";
+      init_process();
+      var call = require_function_call();
+      var anObject = require_an_object();
+      var getMethod = require_get_method();
+      module.exports = function(iterator, kind, value) {
+        var innerResult, innerError;
+        anObject(iterator);
+        try {
+          innerResult = getMethod(iterator, "return");
+          if (!innerResult) {
+            if (kind === "throw") throw value;
+            return value;
+          }
+          innerResult = call(innerResult, iterator);
+        } catch (error) {
+          innerError = true;
+          innerResult = error;
+        }
+        if (kind === "throw") throw value;
+        if (innerError) throw innerResult;
+        anObject(innerResult);
+        return value;
+      };
+    }
+  });
+
   // node_modules/core-js/internals/iterate.js
   var require_iterate = __commonJS({
     "node_modules/core-js/internals/iterate.js"(exports, module) {
@@ -5028,62 +4769,46 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/core-js/modules/es.iterator.for-each.js
-  var require_es_iterator_for_each = __commonJS({
-    "node_modules/core-js/modules/es.iterator.for-each.js"() {
+  // node_modules/core-js/internals/get-iterator-direct.js
+  var require_get_iterator_direct = __commonJS({
+    "node_modules/core-js/internals/get-iterator-direct.js"(exports, module) {
       "use strict";
       init_process();
-      var $ = require_export();
-      var call = require_function_call();
-      var iterate = require_iterate();
-      var aCallable = require_a_callable();
-      var anObject = require_an_object();
-      var getIteratorDirect = require_get_iterator_direct();
-      var iteratorClose = require_iterator_close();
-      var iteratorHelperWithoutClosingOnEarlyError = require_iterator_helper_without_closing_on_early_error();
-      var forEachWithoutClosingOnEarlyError = iteratorHelperWithoutClosingOnEarlyError("forEach", TypeError);
-      $({ target: "Iterator", proto: true, real: true, forced: forEachWithoutClosingOnEarlyError }, {
-        forEach: function forEach(fn) {
-          anObject(this);
-          try {
-            aCallable(fn);
-          } catch (error) {
-            iteratorClose(this, "throw", error);
-          }
-          if (forEachWithoutClosingOnEarlyError) return call(forEachWithoutClosingOnEarlyError, this, fn);
-          var record = getIteratorDirect(this);
-          var counter = 0;
-          iterate(record, function(value) {
-            fn(value, counter++);
-          }, { IS_RECORD: true });
-        }
-      });
-    }
-  });
-
-  // node_modules/core-js/modules/esnext.iterator.for-each.js
-  var require_esnext_iterator_for_each = __commonJS({
-    "node_modules/core-js/modules/esnext.iterator.for-each.js"() {
-      "use strict";
-      init_process();
-      require_es_iterator_for_each();
-    }
-  });
-
-  // node_modules/json-dom/dist/domItem/tree/appendChild.js
-  var require_appendChild = __commonJS({
-    "node_modules/json-dom/dist/domItem/tree/appendChild.js"(exports) {
-      "use strict";
-      init_process();
-      Object.defineProperty(exports, "__esModule", {
-        value: true
-      });
-      var appendChild = (parent, child) => {
-        parent.children.push(child);
-        child.parentItem = parent;
-        return parent;
+      module.exports = function(obj) {
+        return {
+          iterator: obj,
+          next: obj.next,
+          done: false
+        };
       };
-      exports.default = appendChild;
+    }
+  });
+
+  // node_modules/core-js/internals/iterator-helper-without-closing-on-early-error.js
+  var require_iterator_helper_without_closing_on_early_error = __commonJS({
+    "node_modules/core-js/internals/iterator-helper-without-closing-on-early-error.js"(exports, module) {
+      "use strict";
+      init_process();
+      var globalThis2 = require_global_this();
+      module.exports = function(METHOD_NAME, ExpectedError) {
+        var Iterator2 = globalThis2.Iterator;
+        var IteratorPrototype = Iterator2 && Iterator2.prototype;
+        var method = IteratorPrototype && IteratorPrototype[METHOD_NAME];
+        var CLOSED = false;
+        if (method) try {
+          method.call({
+            next: function() {
+              return { done: true };
+            },
+            "return": function() {
+              CLOSED = true;
+            }
+          }, -1);
+        } catch (error) {
+          if (!(error instanceof ExpectedError)) CLOSED = false;
+        }
+        if (!CLOSED) return method;
+      };
     }
   });
 
@@ -5548,6 +5273,48 @@ var jsonDomComponents = (() => {
         head: null,
         tail: null
       });
+    }
+  });
+
+  // node_modules/core-js/modules/es.iterator.for-each.js
+  var require_es_iterator_for_each = __commonJS({
+    "node_modules/core-js/modules/es.iterator.for-each.js"() {
+      "use strict";
+      init_process();
+      var $ = require_export();
+      var call = require_function_call();
+      var iterate = require_iterate();
+      var aCallable = require_a_callable();
+      var anObject = require_an_object();
+      var getIteratorDirect = require_get_iterator_direct();
+      var iteratorClose = require_iterator_close();
+      var iteratorHelperWithoutClosingOnEarlyError = require_iterator_helper_without_closing_on_early_error();
+      var forEachWithoutClosingOnEarlyError = iteratorHelperWithoutClosingOnEarlyError("forEach", TypeError);
+      $({ target: "Iterator", proto: true, real: true, forced: forEachWithoutClosingOnEarlyError }, {
+        forEach: function forEach(fn) {
+          anObject(this);
+          try {
+            aCallable(fn);
+          } catch (error) {
+            iteratorClose(this, "throw", error);
+          }
+          if (forEachWithoutClosingOnEarlyError) return call(forEachWithoutClosingOnEarlyError, this, fn);
+          var record = getIteratorDirect(this);
+          var counter = 0;
+          iterate(record, function(value) {
+            fn(value, counter++);
+          }, { IS_RECORD: true });
+        }
+      });
+    }
+  });
+
+  // node_modules/core-js/modules/esnext.iterator.for-each.js
+  var require_esnext_iterator_for_each = __commonJS({
+    "node_modules/core-js/modules/esnext.iterator.for-each.js"() {
+      "use strict";
+      init_process();
+      require_es_iterator_for_each();
     }
   });
 
@@ -6134,6 +5901,239 @@ var jsonDomComponents = (() => {
       DoublyLinkedList.fromArray = (values = [], linkerClass = _DoubleLinker.DoubleLinker, classType = DoublyLinkedList) => {
         return _LinkedList.LinkedList.fromArray(values, linkerClass, classType);
       };
+    }
+  });
+
+  // node_modules/core-js/internals/define-built-ins.js
+  var require_define_built_ins = __commonJS({
+    "node_modules/core-js/internals/define-built-ins.js"(exports, module) {
+      "use strict";
+      init_process();
+      var defineBuiltIn = require_define_built_in();
+      module.exports = function(target, src, options) {
+        for (var key in src) defineBuiltIn(target, key, src[key], options);
+        return target;
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/create-iter-result-object.js
+  var require_create_iter_result_object = __commonJS({
+    "node_modules/core-js/internals/create-iter-result-object.js"(exports, module) {
+      "use strict";
+      init_process();
+      module.exports = function(value, done) {
+        return { value, done };
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/iterator-close-all.js
+  var require_iterator_close_all = __commonJS({
+    "node_modules/core-js/internals/iterator-close-all.js"(exports, module) {
+      "use strict";
+      init_process();
+      var iteratorClose = require_iterator_close();
+      module.exports = function(iters, kind, value) {
+        for (var i = iters.length - 1; i >= 0; i--) {
+          if (iters[i] === void 0) continue;
+          try {
+            value = iteratorClose(iters[i].iterator, kind, value);
+          } catch (error) {
+            kind = "throw";
+            value = error;
+          }
+        }
+        if (kind === "throw") throw value;
+        return value;
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/iterator-cleanup-state.js
+  var require_iterator_cleanup_state = __commonJS({
+    "node_modules/core-js/internals/iterator-cleanup-state.js"(exports, module) {
+      "use strict";
+      init_process();
+      module.exports = function(state) {
+        state.iterator = state.next = state.nextHandler = state.mapper = state.predicate = state.inner = state.iterables = state.iters = state.openIters = state.padding = state.finishResults = state.buffer = null;
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/iterator-create-proxy.js
+  var require_iterator_create_proxy = __commonJS({
+    "node_modules/core-js/internals/iterator-create-proxy.js"(exports, module) {
+      "use strict";
+      init_process();
+      var call = require_function_call();
+      var create = require_object_create();
+      var createNonEnumerableProperty = require_create_non_enumerable_property();
+      var defineBuiltIns = require_define_built_ins();
+      var wellKnownSymbol = require_well_known_symbol();
+      var InternalStateModule = require_internal_state();
+      var getMethod = require_get_method();
+      var IteratorPrototype = require_iterators_core().IteratorPrototype;
+      var createIterResultObject = require_create_iter_result_object();
+      var iteratorClose = require_iterator_close();
+      var iteratorCloseAll = require_iterator_close_all();
+      var cleanupState = require_iterator_cleanup_state();
+      var TO_STRING_TAG = wellKnownSymbol("toStringTag");
+      var ITERATOR_HELPER = "IteratorHelper";
+      var WRAP_FOR_VALID_ITERATOR = "WrapForValidIterator";
+      var NORMAL = "normal";
+      var THROW = "throw";
+      var setInternalState = InternalStateModule.set;
+      var createIteratorProxyPrototype = function(IS_ITERATOR) {
+        var getInternalState = InternalStateModule.getterFor(IS_ITERATOR ? WRAP_FOR_VALID_ITERATOR : ITERATOR_HELPER);
+        return defineBuiltIns(create(IteratorPrototype), {
+          next: function next() {
+            var state = getInternalState(this);
+            if (IS_ITERATOR) return state.nextHandler();
+            if (state.done) return createIterResultObject(void 0, true);
+            try {
+              var result = state.nextHandler();
+              if (state.done) cleanupState(state);
+              return state.returnHandlerResult ? result : createIterResultObject(result, state.done);
+            } catch (error) {
+              state.done = true;
+              cleanupState(state);
+              throw error;
+            }
+          },
+          "return": function() {
+            var state = getInternalState(this);
+            var iterator = state.iterator;
+            var inner = state.inner;
+            var openIters = state.openIters;
+            var done = state.done;
+            state.done = true;
+            if (IS_ITERATOR) {
+              var returnMethod = getMethod(iterator, "return");
+              return returnMethod ? call(returnMethod, iterator) : createIterResultObject(void 0, true);
+            }
+            cleanupState(state);
+            if (done) return createIterResultObject(void 0, true);
+            if (inner) try {
+              iteratorClose(inner.iterator, NORMAL);
+            } catch (error) {
+              return iteratorClose(iterator, THROW, error);
+            }
+            if (openIters) try {
+              iteratorCloseAll(openIters, NORMAL);
+            } catch (error) {
+              if (iterator) return iteratorClose(iterator, THROW, error);
+              throw error;
+            }
+            if (iterator) iteratorClose(iterator, NORMAL);
+            return createIterResultObject(void 0, true);
+          }
+        });
+      };
+      var WrapForValidIteratorPrototype = createIteratorProxyPrototype(true);
+      var IteratorHelperPrototype = createIteratorProxyPrototype(false);
+      createNonEnumerableProperty(IteratorHelperPrototype, TO_STRING_TAG, "Iterator Helper");
+      module.exports = function(nextHandler, IS_ITERATOR, RETURN_HANDLER_RESULT) {
+        var IteratorProxy = function Iterator2(record, state) {
+          if (state) {
+            state.iterator = record.iterator;
+            state.next = record.next;
+          } else state = record;
+          state.type = IS_ITERATOR ? WRAP_FOR_VALID_ITERATOR : ITERATOR_HELPER;
+          state.returnHandlerResult = !!RETURN_HANDLER_RESULT;
+          state.nextHandler = nextHandler;
+          state.counter = 0;
+          state.done = false;
+          setInternalState(this, state);
+        };
+        IteratorProxy.prototype = IS_ITERATOR ? WrapForValidIteratorPrototype : IteratorHelperPrototype;
+        return IteratorProxy;
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/call-with-safe-iteration-closing.js
+  var require_call_with_safe_iteration_closing = __commonJS({
+    "node_modules/core-js/internals/call-with-safe-iteration-closing.js"(exports, module) {
+      "use strict";
+      init_process();
+      var anObject = require_an_object();
+      var iteratorClose = require_iterator_close();
+      module.exports = function(iterator, fn, value, ENTRIES) {
+        try {
+          return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value);
+        } catch (error) {
+          iteratorClose(iterator, "throw", error);
+        }
+      };
+    }
+  });
+
+  // node_modules/core-js/internals/iterator-helper-throws-on-invalid-iterator.js
+  var require_iterator_helper_throws_on_invalid_iterator = __commonJS({
+    "node_modules/core-js/internals/iterator-helper-throws-on-invalid-iterator.js"(exports, module) {
+      "use strict";
+      init_process();
+      module.exports = function(methodName, argument) {
+        var method = typeof Iterator == "function" && Iterator.prototype[methodName];
+        if (method) try {
+          method.call({ next: null }, argument).next();
+        } catch (error) {
+          return true;
+        }
+      };
+    }
+  });
+
+  // node_modules/core-js/modules/es.iterator.map.js
+  var require_es_iterator_map = __commonJS({
+    "node_modules/core-js/modules/es.iterator.map.js"() {
+      "use strict";
+      init_process();
+      var $ = require_export();
+      var call = require_function_call();
+      var aCallable = require_a_callable();
+      var anObject = require_an_object();
+      var getIteratorDirect = require_get_iterator_direct();
+      var createIteratorProxy = require_iterator_create_proxy();
+      var callWithSafeIterationClosing = require_call_with_safe_iteration_closing();
+      var iteratorClose = require_iterator_close();
+      var iteratorHelperThrowsOnInvalidIterator = require_iterator_helper_throws_on_invalid_iterator();
+      var iteratorHelperWithoutClosingOnEarlyError = require_iterator_helper_without_closing_on_early_error();
+      var IS_PURE = require_is_pure();
+      var MAP_WITHOUT_THROWING_ON_INVALID_ITERATOR = !IS_PURE && !iteratorHelperThrowsOnInvalidIterator("map", function() {
+      });
+      var mapWithoutClosingOnEarlyError = !IS_PURE && !MAP_WITHOUT_THROWING_ON_INVALID_ITERATOR && iteratorHelperWithoutClosingOnEarlyError("map", TypeError);
+      var FORCED = IS_PURE || MAP_WITHOUT_THROWING_ON_INVALID_ITERATOR || mapWithoutClosingOnEarlyError;
+      var IteratorProxy = createIteratorProxy(function() {
+        var iterator = this.iterator;
+        var result = anObject(call(this.next, iterator));
+        var done = this.done = !!result.done;
+        if (!done) return callWithSafeIterationClosing(iterator, this.mapper, [result.value, this.counter++], true);
+      });
+      $({ target: "Iterator", proto: true, real: true, forced: FORCED }, {
+        map: function map(mapper) {
+          anObject(this);
+          try {
+            aCallable(mapper);
+          } catch (error) {
+            iteratorClose(this, "throw", error);
+          }
+          if (mapWithoutClosingOnEarlyError) return call(mapWithoutClosingOnEarlyError, this, mapper);
+          return new IteratorProxy(getIteratorDirect(this), {
+            mapper
+          });
+        }
+      });
+    }
+  });
+
+  // node_modules/core-js/modules/esnext.iterator.map.js
+  var require_esnext_iterator_map = __commonJS({
+    "node_modules/core-js/modules/esnext.iterator.map.js"() {
+      "use strict";
+      init_process();
+      require_es_iterator_map();
     }
   });
 
@@ -7879,13 +7879,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/tree/itemIdIndex.js
+  // node_modules/treeloom/dist/domItem/tree/itemIdIndex.js
   var require_itemIdIndex = __commonJS({
-    "node_modules/json-dom/dist/domItem/tree/itemIdIndex.js"(exports) {
+    "node_modules/treeloom/dist/domItem/tree/itemIdIndex.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -7944,9 +7942,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/tree/removeChild.js
+  // node_modules/treeloom/dist/domItem/tree/removeChild.js
   var require_removeChild = __commonJS({
-    "node_modules/json-dom/dist/domItem/tree/removeChild.js"(exports) {
+    "node_modules/treeloom/dist/domItem/tree/removeChild.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -7962,13 +7960,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/objects/createCoreItem.js
+  // node_modules/treeloom/dist/domItem/objects/createCoreItem.js
   var require_createCoreItem = __commonJS({
-    "node_modules/json-dom/dist/domItem/objects/createCoreItem.js"(exports) {
+    "node_modules/treeloom/dist/domItem/objects/createCoreItem.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -8014,24 +8010,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/traits/definitions.js
+  // node_modules/treeloom/dist/domItem/traits/definitions.js
   var require_definitions = __commonJS({
-    "node_modules/json-dom/dist/domItem/traits/definitions.js"(exports) {
+    "node_modules/treeloom/dist/domItem/traits/definitions.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_map_delete_all();
-      require_esnext_map_every();
-      require_esnext_map_filter();
-      require_esnext_map_find();
-      require_esnext_map_find_key();
-      require_esnext_map_includes();
-      require_esnext_map_key_of();
-      require_esnext_map_map_keys();
-      require_esnext_map_map_values();
-      require_esnext_map_merge();
-      require_esnext_map_reduce();
-      require_esnext_map_some();
-      require_esnext_map_update();
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
@@ -8046,9 +8029,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/traits/withTrait.js
+  // node_modules/treeloom/dist/domItem/traits/withTrait.js
   var require_withTrait = __commonJS({
-    "node_modules/json-dom/dist/domItem/traits/withTrait.js"(exports) {
+    "node_modules/treeloom/dist/domItem/traits/withTrait.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8071,13 +8054,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/objects/createDomItem.js
+  // node_modules/treeloom/dist/domItem/objects/createDomItem.js
   var require_createDomItem = __commonJS({
-    "node_modules/json-dom/dist/domItem/objects/createDomItem.js"(exports) {
+    "node_modules/treeloom/dist/domItem/objects/createDomItem.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -8105,9 +8086,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/objects/initChildren.js
+  // node_modules/treeloom/dist/domItem/objects/initChildren.js
   var require_initChildren = __commonJS({
-    "node_modules/json-dom/dist/domItem/objects/initChildren.js"(exports) {
+    "node_modules/treeloom/dist/domItem/objects/initChildren.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8149,9 +8130,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/objects/initRoot.js
+  // node_modules/treeloom/dist/domItem/objects/initRoot.js
   var require_initRoot = __commonJS({
-    "node_modules/json-dom/dist/domItem/objects/initRoot.js"(exports) {
+    "node_modules/treeloom/dist/domItem/objects/initRoot.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8179,56 +8160,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/core-js/modules/es.iterator.find.js
-  var require_es_iterator_find = __commonJS({
-    "node_modules/core-js/modules/es.iterator.find.js"() {
-      "use strict";
-      init_process();
-      var $ = require_export();
-      var call = require_function_call();
-      var iterate = require_iterate();
-      var aCallable = require_a_callable();
-      var anObject = require_an_object();
-      var getIteratorDirect = require_get_iterator_direct();
-      var iteratorClose = require_iterator_close();
-      var iteratorHelperWithoutClosingOnEarlyError = require_iterator_helper_without_closing_on_early_error();
-      var findWithoutClosingOnEarlyError = iteratorHelperWithoutClosingOnEarlyError("find", TypeError);
-      $({ target: "Iterator", proto: true, real: true, forced: findWithoutClosingOnEarlyError }, {
-        find: function find(predicate) {
-          anObject(this);
-          try {
-            aCallable(predicate);
-          } catch (error) {
-            iteratorClose(this, "throw", error);
-          }
-          if (findWithoutClosingOnEarlyError) return call(findWithoutClosingOnEarlyError, this, predicate);
-          var record = getIteratorDirect(this);
-          var counter = 0;
-          return iterate(record, function(value, stop) {
-            if (predicate(value, counter++)) return stop(value);
-          }, { IS_RECORD: true, INTERRUPTED: true }).result;
-        }
-      });
-    }
-  });
-
-  // node_modules/core-js/modules/esnext.iterator.find.js
-  var require_esnext_iterator_find = __commonJS({
-    "node_modules/core-js/modules/esnext.iterator.find.js"() {
-      "use strict";
-      init_process();
-      require_es_iterator_find();
-    }
-  });
-
-  // node_modules/json-dom/dist/sync/updateChildren.js
+  // node_modules/treeloom/dist/sync/updateChildren.js
   var require_updateChildren = __commonJS({
-    "node_modules/json-dom/dist/sync/updateChildren.js"(exports) {
+    "node_modules/treeloom/dist/sync/updateChildren.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_find();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -8261,9 +8197,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/diff/getAssignedStyles.js
+  // node_modules/treeloom/dist/diff/getAssignedStyles.js
   var require_getAssignedStyles = __commonJS({
-    "node_modules/json-dom/dist/diff/getAssignedStyles.js"(exports) {
+    "node_modules/treeloom/dist/diff/getAssignedStyles.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8280,13 +8216,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/diff/domItemHasAttribute.js
+  // node_modules/treeloom/dist/diff/domItemHasAttribute.js
   var require_domItemHasAttribute = __commonJS({
-    "node_modules/json-dom/dist/diff/domItemHasAttribute.js"(exports) {
+    "node_modules/treeloom/dist/diff/domItemHasAttribute.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_map();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -8331,9 +8265,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/diff/createChangeList.js
+  // node_modules/treeloom/dist/diff/createChangeList.js
   var require_createChangeList = __commonJS({
-    "node_modules/json-dom/dist/diff/createChangeList.js"(exports) {
+    "node_modules/treeloom/dist/diff/createChangeList.js"(exports) {
       "use strict";
       init_process();
       require_es_array_includes();
@@ -8367,13 +8301,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/diff/elementChanges.js
+  // node_modules/treeloom/dist/diff/elementChanges.js
   var require_elementChanges = __commonJS({
-    "node_modules/json-dom/dist/diff/elementChanges.js"(exports) {
+    "node_modules/treeloom/dist/diff/elementChanges.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_reduce();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -8506,9 +8438,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/sync/updateDomItem.js
+  // node_modules/treeloom/dist/sync/updateDomItem.js
   var require_updateDomItem = __commonJS({
-    "node_modules/json-dom/dist/sync/updateDomItem.js"(exports) {
+    "node_modules/treeloom/dist/sync/updateDomItem.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8552,13 +8484,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/sync/updateDomItems.js
+  // node_modules/treeloom/dist/sync/updateDomItems.js
   var require_updateDomItems = __commonJS({
-    "node_modules/json-dom/dist/sync/updateDomItems.js"(exports) {
+    "node_modules/treeloom/dist/sync/updateDomItems.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -8584,13 +8514,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/objects/documentDomItem.js
+  // node_modules/treeloom/dist/domItem/objects/documentDomItem.js
   var require_documentDomItem = __commonJS({
-    "node_modules/json-dom/dist/domItem/objects/documentDomItem.js"(exports) {
+    "node_modules/treeloom/dist/domItem/objects/documentDomItem.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_map();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -8617,9 +8545,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/objects/documentItem.js
+  // node_modules/treeloom/dist/domItem/objects/documentItem.js
   var require_documentItem = __commonJS({
-    "node_modules/json-dom/dist/domItem/objects/documentItem.js"(exports) {
+    "node_modules/treeloom/dist/domItem/objects/documentItem.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8630,21 +8558,27 @@ var jsonDomComponents = (() => {
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
+      exports.withDocumentItem = void 0;
       var documentDomItem_1 = __importDefault(require_documentDomItem());
       var existingItem = null;
-      var documentItem = (() => {
+      var getDocumentItem = () => {
         if (existingItem === null) {
           existingItem = (0, documentDomItem_1.default)();
         }
         return existingItem;
-      })();
-      exports.default = documentItem;
+      };
+      var withDocumentItem = (api) => Object.defineProperty(api, "documentItem", {
+        enumerable: true,
+        get: getDocumentItem
+      });
+      exports.withDocumentItem = withDocumentItem;
+      exports.default = getDocumentItem;
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/makeForwardingListener.js
+  // node_modules/treeloom/dist/events/functions/makeForwardingListener.js
   var require_makeForwardingListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/makeForwardingListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/makeForwardingListener.js"(exports) {
       "use strict";
       init_process();
       require_es_array_includes();
@@ -8674,9 +8608,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/retrieveListener.js
+  // node_modules/treeloom/dist/events/functions/retrieveListener.js
   var require_retrieveListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/retrieveListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/retrieveListener.js"(exports) {
       "use strict";
       init_process();
       require_es_array_includes();
@@ -8690,7 +8624,7 @@ var jsonDomComponents = (() => {
       });
       var documentItem_1 = __importDefault(require_documentItem());
       var makeForwardingListener_1 = __importDefault(require_makeForwardingListener());
-      var retrieveListener = (listenerName, parent = documentItem_1.default) => {
+      var retrieveListener = (listenerName, parent = (0, documentItem_1.default)()) => {
         if (typeof listenerName === "function") {
           return listenerName;
         }
@@ -8706,9 +8640,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/activateListener.js
+  // node_modules/treeloom/dist/events/functions/activateListener.js
   var require_activateListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/activateListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/activateListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8748,9 +8682,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/objects/createEventListener.js
+  // node_modules/treeloom/dist/events/objects/createEventListener.js
   var require_createEventListener = __commonJS({
-    "node_modules/json-dom/dist/events/objects/createEventListener.js"(exports) {
+    "node_modules/treeloom/dist/events/objects/createEventListener.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -8771,9 +8705,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/addEventListener.js
+  // node_modules/treeloom/dist/events/functions/addEventListener.js
   var require_addEventListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/addEventListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/addEventListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8808,9 +8742,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/objects/options/numberToOptions.js
+  // node_modules/treeloom/dist/events/objects/options/numberToOptions.js
   var require_numberToOptions = __commonJS({
-    "node_modules/json-dom/dist/events/objects/options/numberToOptions.js"(exports) {
+    "node_modules/treeloom/dist/events/objects/options/numberToOptions.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8827,9 +8761,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/listenerOptions.js
+  // node_modules/treeloom/dist/events/functions/listenerOptions.js
   var require_listenerOptions = __commonJS({
-    "node_modules/json-dom/dist/events/functions/listenerOptions.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/listenerOptions.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -8854,9 +8788,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/assignListener.js
+  // node_modules/treeloom/dist/events/functions/assignListener.js
   var require_assignListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/assignListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/assignListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8883,9 +8817,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/getItemByElement.js
+  // node_modules/treeloom/dist/domItem/query/getItemByElement.js
   var require_getItemByElement = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/getItemByElement.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/getItemByElement.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -8907,9 +8841,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/objects/createEventProxy.js
+  // node_modules/treeloom/dist/events/objects/createEventProxy.js
   var require_createEventProxy = __commonJS({
-    "node_modules/json-dom/dist/events/objects/createEventProxy.js"(exports) {
+    "node_modules/treeloom/dist/events/objects/createEventProxy.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -8950,13 +8884,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/applyActiveListeners.js
+  // node_modules/treeloom/dist/events/functions/applyActiveListeners.js
   var require_applyActiveListeners = __commonJS({
-    "node_modules/json-dom/dist/events/functions/applyActiveListeners.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/applyActiveListeners.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -9000,13 +8932,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/bindElementListeners.js
+  // node_modules/treeloom/dist/events/functions/bindElementListeners.js
   var require_bindElementListeners = __commonJS({
-    "node_modules/json-dom/dist/events/functions/bindElementListeners.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/bindElementListeners.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -9035,9 +8965,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/bindListeners.js
+  // node_modules/treeloom/dist/events/functions/bindListeners.js
   var require_bindListeners = __commonJS({
-    "node_modules/json-dom/dist/events/functions/bindListeners.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/bindListeners.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9055,9 +8985,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/bindAllListeners.js
+  // node_modules/treeloom/dist/events/functions/bindAllListeners.js
   var require_bindAllListeners = __commonJS({
-    "node_modules/json-dom/dist/events/functions/bindAllListeners.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/bindAllListeners.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9079,9 +9009,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/unassignListener.js
+  // node_modules/treeloom/dist/events/functions/unassignListener.js
   var require_unassignListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/unassignListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/unassignListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9103,9 +9033,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/deactivateListener.js
+  // node_modules/treeloom/dist/events/functions/deactivateListener.js
   var require_deactivateListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/deactivateListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/deactivateListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9155,13 +9085,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/deactivateListeners.js
+  // node_modules/treeloom/dist/events/functions/deactivateListeners.js
   var require_deactivateListeners = __commonJS({
-    "node_modules/json-dom/dist/events/functions/deactivateListeners.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/deactivateListeners.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
@@ -9178,9 +9106,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/findEventListener.js
+  // node_modules/treeloom/dist/events/functions/findEventListener.js
   var require_findEventListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/findEventListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/findEventListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9220,9 +9148,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/registerListener.js
+  // node_modules/treeloom/dist/events/functions/registerListener.js
   var require_registerListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/registerListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/registerListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9234,16 +9162,16 @@ var jsonDomComponents = (() => {
         value: true
       });
       var documentItem_1 = __importDefault(require_documentItem());
-      var registerListener = (listener, name = listener.name, parent = documentItem_1.default) => Object.assign(parent.eventActions, {
+      var registerListener = (listener, name = listener.name, parent = (0, documentItem_1.default)()) => Object.assign(parent.eventActions, {
         [name]: listener
       });
       exports.default = registerListener;
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/fullAddEventListener.js
+  // node_modules/treeloom/dist/events/functions/fullAddEventListener.js
   var require_fullAddEventListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/fullAddEventListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/fullAddEventListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9273,9 +9201,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/removeEventListener.js
+  // node_modules/treeloom/dist/events/functions/removeEventListener.js
   var require_removeEventListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/removeEventListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/removeEventListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9303,9 +9231,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/fullRemoveEventListener.js
+  // node_modules/treeloom/dist/events/functions/fullRemoveEventListener.js
   var require_fullRemoveEventListener = __commonJS({
-    "node_modules/json-dom/dist/events/functions/fullRemoveEventListener.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/fullRemoveEventListener.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9325,9 +9253,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/receiveForwardedEvent.js
+  // node_modules/treeloom/dist/events/functions/receiveForwardedEvent.js
   var require_receiveForwardedEvent = __commonJS({
-    "node_modules/json-dom/dist/events/functions/receiveForwardedEvent.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/receiveForwardedEvent.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -9355,9 +9283,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/registerListeners.js
+  // node_modules/treeloom/dist/events/functions/registerListeners.js
   var require_registerListeners = __commonJS({
-    "node_modules/json-dom/dist/events/functions/registerListeners.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/registerListeners.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9370,7 +9298,7 @@ var jsonDomComponents = (() => {
       });
       var si_funciona_1 = __importDefault(require_main());
       var documentItem_1 = __importDefault(require_documentItem());
-      var registerListeners = (listeners, parent = documentItem_1.default) => {
+      var registerListeners = (listeners, parent = (0, documentItem_1.default)()) => {
         si_funciona_1.default.mergeObjectsMutable(parent.eventActions, listeners);
         return parent;
       };
@@ -9378,13 +9306,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/revokeActiveListeners.js
+  // node_modules/treeloom/dist/events/functions/revokeActiveListeners.js
   var require_revokeActiveListeners = __commonJS({
-    "node_modules/json-dom/dist/events/functions/revokeActiveListeners.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/revokeActiveListeners.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -9427,9 +9353,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/functions/setForwardEvents.js
+  // node_modules/treeloom/dist/events/functions/setForwardEvents.js
   var require_setForwardEvents = __commonJS({
-    "node_modules/json-dom/dist/events/functions/setForwardEvents.js"(exports) {
+    "node_modules/treeloom/dist/events/functions/setForwardEvents.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9441,7 +9367,7 @@ var jsonDomComponents = (() => {
         value: true
       });
       var documentItem_1 = __importDefault(require_documentItem());
-      var setForwardEvents = (transport, parent = documentItem_1.default) => {
+      var setForwardEvents = (transport, parent = (0, documentItem_1.default)()) => {
         parent.forwardEvents = transport;
         return parent;
       };
@@ -9449,9 +9375,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/objects/options.js
+  // node_modules/treeloom/dist/events/objects/options.js
   var require_options = __commonJS({
-    "node_modules/json-dom/dist/events/objects/options.js"(exports) {
+    "node_modules/treeloom/dist/events/objects/options.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9473,9 +9399,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/events/index.js
+  // node_modules/treeloom/dist/events/index.js
   var require_events = __commonJS({
-    "node_modules/json-dom/dist/events/index.js"(exports) {
+    "node_modules/treeloom/dist/events/index.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9545,13 +9471,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/objects/addDomItemProperties.js
+  // node_modules/treeloom/dist/domItem/objects/addDomItemProperties.js
   var require_addDomItemProperties = __commonJS({
-    "node_modules/json-dom/dist/domItem/objects/addDomItemProperties.js"(exports) {
+    "node_modules/treeloom/dist/domItem/objects/addDomItemProperties.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -9573,9 +9497,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/traits/defineTrait.js
+  // node_modules/treeloom/dist/domItem/traits/defineTrait.js
   var require_defineTrait = __commonJS({
-    "node_modules/json-dom/dist/domItem/traits/defineTrait.js"(exports) {
+    "node_modules/treeloom/dist/domItem/traits/defineTrait.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9595,13 +9519,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/gatherChildItems.js
+  // node_modules/treeloom/dist/domItem/query/gatherChildItems.js
   var require_gatherChildItems = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/gatherChildItems.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/gatherChildItems.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_reduce();
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
@@ -9610,9 +9532,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/getChildrenByClass.js
+  // node_modules/treeloom/dist/domItem/query/getChildrenByClass.js
   var require_getChildrenByClass = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/getChildrenByClass.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/getChildrenByClass.js"(exports) {
       "use strict";
       init_process();
       require_es_array_includes();
@@ -9626,14 +9548,14 @@ var jsonDomComponents = (() => {
       });
       var documentItem_1 = __importDefault(require_documentItem());
       var gatherChildItems_1 = __importDefault(require_gatherChildItems());
-      var getChildrenByClass = (className, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (child, gatheredResults) => (child.attributes.className ?? "").split(" ").includes(className) ? gatheredResults.concat([child]) : gatheredResults);
+      var getChildrenByClass = (className, item = (0, documentItem_1.default)().body) => (0, gatherChildItems_1.default)(item, (child, gatheredResults) => (child.attributes.className ?? "").split(" ").includes(className) ? gatheredResults.concat([child]) : gatheredResults);
       exports.default = getChildrenByClass;
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/getChildTest.js
+  // node_modules/treeloom/dist/domItem/query/getChildTest.js
   var require_getChildTest = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/getChildTest.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/getChildTest.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -9644,9 +9566,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/getChildrenFromAttribute.js
+  // node_modules/treeloom/dist/domItem/query/getChildrenFromAttribute.js
   var require_getChildrenFromAttribute = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/getChildrenFromAttribute.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/getChildrenFromAttribute.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9660,14 +9582,14 @@ var jsonDomComponents = (() => {
       var documentItem_1 = __importDefault(require_documentItem());
       var gatherChildItems_1 = __importDefault(require_gatherChildItems());
       var getChildTest_1 = __importDefault(require_getChildTest());
-      var getChildrenFromAttribute = (attr, value, item = documentItem_1.default.body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value));
+      var getChildrenFromAttribute = (attr, value, item = (0, documentItem_1.default)().body) => (0, gatherChildItems_1.default)(item, (0, getChildTest_1.default)(attr, value));
       exports.default = getChildrenFromAttribute;
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/getChildrenByName.js
+  // node_modules/treeloom/dist/domItem/query/getChildrenByName.js
   var require_getChildrenByName = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/getChildrenByName.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/getChildrenByName.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9685,13 +9607,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/tree/getItemByPath.js
+  // node_modules/treeloom/dist/domItem/tree/getItemByPath.js
   var require_getItemByPath = __commonJS({
-    "node_modules/json-dom/dist/domItem/tree/getItemByPath.js"(exports) {
+    "node_modules/treeloom/dist/domItem/tree/getItemByPath.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_reduce();
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
@@ -9706,9 +9626,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/tree/getItemPath.js
+  // node_modules/treeloom/dist/domItem/tree/getItemPath.js
   var require_getItemPath = __commonJS({
-    "node_modules/json-dom/dist/domItem/tree/getItemPath.js"(exports) {
+    "node_modules/treeloom/dist/domItem/tree/getItemPath.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9734,9 +9654,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/getParentsByClass.js
+  // node_modules/treeloom/dist/domItem/query/getParentsByClass.js
   var require_getParentsByClass = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/getParentsByClass.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/getParentsByClass.js"(exports) {
       "use strict";
       init_process();
       require_es_array_includes();
@@ -9750,7 +9670,7 @@ var jsonDomComponents = (() => {
       });
       var documentItem_1 = __importDefault(require_documentItem());
       var si_funciona_1 = __importDefault(require_main());
-      var getParentsByClass = (className, item = documentItem_1.default.body) => {
+      var getParentsByClass = (className, item = (0, documentItem_1.default)().body) => {
         if (item.parentItem === null) {
           if (item.nodeName === "#document") {
             throw new Error("Root parent item must be an empty object, null reference found.");
@@ -9768,9 +9688,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/getParentsFromAttribute.js
+  // node_modules/treeloom/dist/domItem/query/getParentsFromAttribute.js
   var require_getParentsFromAttribute = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/getParentsFromAttribute.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/getParentsFromAttribute.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9783,7 +9703,7 @@ var jsonDomComponents = (() => {
       });
       var documentItem_1 = __importDefault(require_documentItem());
       var si_funciona_1 = __importDefault(require_main());
-      var getParentsFromAttribute = (attr, value, item = documentItem_1.default.body) => {
+      var getParentsFromAttribute = (attr, value, item = (0, documentItem_1.default)().body) => {
         if (item.parentItem === null) {
           if (item.nodeName === "#document") {
             throw new Error("Root parent item must be an empty object, null reference found.");
@@ -9800,9 +9720,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/getParentsByName.js
+  // node_modules/treeloom/dist/domItem/query/getParentsByName.js
   var require_getParentsByName = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/getParentsByName.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/getParentsByName.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9820,9 +9740,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/query/getParentsByTagName.js
+  // node_modules/treeloom/dist/domItem/query/getParentsByTagName.js
   var require_getParentsByTagName = __commonJS({
-    "node_modules/json-dom/dist/domItem/query/getParentsByTagName.js"(exports) {
+    "node_modules/treeloom/dist/domItem/query/getParentsByTagName.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9840,9 +9760,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/traits/getTraitDefinition.js
+  // node_modules/treeloom/dist/domItem/traits/getTraitDefinition.js
   var require_getTraitDefinition = __commonJS({
-    "node_modules/json-dom/dist/domItem/traits/getTraitDefinition.js"(exports) {
+    "node_modules/treeloom/dist/domItem/traits/getTraitDefinition.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -9859,9 +9779,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/traits/hasTrait.js
+  // node_modules/treeloom/dist/domItem/traits/hasTrait.js
   var require_hasTrait = __commonJS({
-    "node_modules/json-dom/dist/domItem/traits/hasTrait.js"(exports) {
+    "node_modules/treeloom/dist/domItem/traits/hasTrait.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -9872,55 +9792,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/core-js/modules/es.iterator.every.js
-  var require_es_iterator_every = __commonJS({
-    "node_modules/core-js/modules/es.iterator.every.js"() {
-      "use strict";
-      init_process();
-      var $ = require_export();
-      var call = require_function_call();
-      var iterate = require_iterate();
-      var aCallable = require_a_callable();
-      var anObject = require_an_object();
-      var getIteratorDirect = require_get_iterator_direct();
-      var iteratorClose = require_iterator_close();
-      var iteratorHelperWithoutClosingOnEarlyError = require_iterator_helper_without_closing_on_early_error();
-      var everyWithoutClosingOnEarlyError = iteratorHelperWithoutClosingOnEarlyError("every", TypeError);
-      $({ target: "Iterator", proto: true, real: true, forced: everyWithoutClosingOnEarlyError }, {
-        every: function every(predicate) {
-          anObject(this);
-          try {
-            aCallable(predicate);
-          } catch (error) {
-            iteratorClose(this, "throw", error);
-          }
-          if (everyWithoutClosingOnEarlyError) return call(everyWithoutClosingOnEarlyError, this, predicate);
-          var record = getIteratorDirect(this);
-          var counter = 0;
-          return !iterate(record, function(value, stop) {
-            if (!predicate(value, counter++)) return stop();
-          }, { IS_RECORD: true, INTERRUPTED: true }).stopped;
-        }
-      });
-    }
-  });
-
-  // node_modules/core-js/modules/esnext.iterator.every.js
-  var require_esnext_iterator_every = __commonJS({
-    "node_modules/core-js/modules/esnext.iterator.every.js"() {
-      "use strict";
-      init_process();
-      require_es_iterator_every();
-    }
-  });
-
-  // node_modules/json-dom/dist/domItem/traits/hasTraits.js
+  // node_modules/treeloom/dist/domItem/traits/hasTraits.js
   var require_hasTraits = __commonJS({
-    "node_modules/json-dom/dist/domItem/traits/hasTraits.js"(exports) {
+    "node_modules/treeloom/dist/domItem/traits/hasTraits.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_every();
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
@@ -9929,9 +9805,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/tree/insertChild.js
+  // node_modules/treeloom/dist/domItem/tree/insertChild.js
   var require_insertChild = __commonJS({
-    "node_modules/json-dom/dist/domItem/tree/insertChild.js"(exports) {
+    "node_modules/treeloom/dist/domItem/tree/insertChild.js"(exports) {
       "use strict";
       init_process();
       Object.defineProperty(exports, "__esModule", {
@@ -9946,13 +9822,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/traits/isDomItem.js
+  // node_modules/treeloom/dist/domItem/traits/isDomItem.js
   var require_isDomItem = __commonJS({
-    "node_modules/json-dom/dist/domItem/traits/isDomItem.js"(exports) {
+    "node_modules/treeloom/dist/domItem/traits/isDomItem.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_every();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -9967,13 +9841,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/tree/setParentItemReferences.js
+  // node_modules/treeloom/dist/domItem/tree/setParentItemReferences.js
   var require_setParentItemReferences = __commonJS({
-    "node_modules/json-dom/dist/domItem/tree/setParentItemReferences.js"(exports) {
+    "node_modules/treeloom/dist/domItem/tree/setParentItemReferences.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
@@ -9992,9 +9864,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/domItem/index.js
+  // node_modules/treeloom/dist/domItem/index.js
   var require_domItem = __commonJS({
-    "node_modules/json-dom/dist/domItem/index.js"(exports) {
+    "node_modules/treeloom/dist/domItem/index.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -10043,7 +9915,7 @@ var jsonDomComponents = (() => {
         createDomItem: createDomItem_1.default,
         defineTrait: defineTrait_1.default,
         documentDomItem: documentDomItem_1.default,
-        documentItem: documentItem_1.default,
+        getDocumentItem: documentItem_1.default,
         gatherChildItems: gatherChildItems_1.default,
         getChildrenByClass: getChildrenByClass_1.default,
         getChildrenByName: getChildrenByName_1.default,
@@ -10072,9 +9944,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/inflate/jsonToDomItem.js
+  // node_modules/treeloom/dist/inflate/jsonToDomItem.js
   var require_jsonToDomItem = __commonJS({
-    "node_modules/json-dom/dist/inflate/jsonToDomItem.js"(exports) {
+    "node_modules/treeloom/dist/inflate/jsonToDomItem.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -10101,9 +9973,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/inflate/index.js
+  // node_modules/treeloom/dist/inflate/index.js
   var require_inflate = __commonJS({
-    "node_modules/json-dom/dist/inflate/index.js"(exports) {
+    "node_modules/treeloom/dist/inflate/index.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -10480,106 +10352,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/core-js/internals/get-iterator-flattenable.js
-  var require_get_iterator_flattenable = __commonJS({
-    "node_modules/core-js/internals/get-iterator-flattenable.js"(exports, module) {
-      "use strict";
-      init_process();
-      var call = require_function_call();
-      var anObject = require_an_object();
-      var getIteratorDirect = require_get_iterator_direct();
-      var getIteratorMethod = require_get_iterator_method_internal();
-      module.exports = function(obj, stringHandling) {
-        if (!stringHandling || typeof obj !== "string") anObject(obj);
-        var method = getIteratorMethod(obj);
-        return getIteratorDirect(anObject(method !== void 0 ? call(method, obj) : obj));
-      };
-    }
-  });
-
-  // node_modules/core-js/modules/es.iterator.flat-map.js
-  var require_es_iterator_flat_map = __commonJS({
-    "node_modules/core-js/modules/es.iterator.flat-map.js"() {
-      "use strict";
-      init_process();
-      var $ = require_export();
-      var call = require_function_call();
-      var aCallable = require_a_callable();
-      var anObject = require_an_object();
-      var getIteratorDirect = require_get_iterator_direct();
-      var getIteratorFlattenable = require_get_iterator_flattenable();
-      var createIteratorProxy = require_iterator_create_proxy();
-      var iteratorClose = require_iterator_close();
-      var fails = require_fails();
-      var IS_PURE = require_is_pure();
-      var iteratorHelperThrowsOnInvalidIterator = require_iterator_helper_throws_on_invalid_iterator();
-      var iteratorHelperWithoutClosingOnEarlyError = require_iterator_helper_without_closing_on_early_error();
-      var THROWS_ON_ITERATOR_WITHOUT_RETURN = !IS_PURE && fails(function() {
-        return [1].values().flatMap(function() {
-          return [1];
-        }).find(function() {
-          return true;
-        }) !== 1;
-      });
-      var FLAT_MAP_WITHOUT_THROWING_ON_INVALID_ITERATOR = !IS_PURE && !THROWS_ON_ITERATOR_WITHOUT_RETURN && !iteratorHelperThrowsOnInvalidIterator("flatMap", function() {
-      });
-      var flatMapWithoutClosingOnEarlyError = !IS_PURE && !THROWS_ON_ITERATOR_WITHOUT_RETURN && !FLAT_MAP_WITHOUT_THROWING_ON_INVALID_ITERATOR && iteratorHelperWithoutClosingOnEarlyError("flatMap", TypeError);
-      var FORCED = IS_PURE || THROWS_ON_ITERATOR_WITHOUT_RETURN || FLAT_MAP_WITHOUT_THROWING_ON_INVALID_ITERATOR || flatMapWithoutClosingOnEarlyError;
-      var IteratorProxy = createIteratorProxy(function() {
-        var iterator = this.iterator;
-        var mapper = this.mapper;
-        var result, inner;
-        while (true) {
-          if (inner = this.inner) try {
-            result = anObject(call(inner.next, inner.iterator));
-            if (!result.done) return result.value;
-            this.inner = null;
-          } catch (error) {
-            iteratorClose(iterator, "throw", error);
-          }
-          result = anObject(call(this.next, iterator));
-          if (this.done = !!result.done) return;
-          try {
-            this.inner = getIteratorFlattenable(mapper(result.value, this.counter++), false);
-          } catch (error) {
-            iteratorClose(iterator, "throw", error);
-          }
-        }
-      });
-      $({ target: "Iterator", proto: true, real: true, forced: FORCED }, {
-        flatMap: function flatMap(mapper) {
-          anObject(this);
-          try {
-            aCallable(mapper);
-          } catch (error) {
-            iteratorClose(this, "throw", error);
-          }
-          if (flatMapWithoutClosingOnEarlyError) return call(flatMapWithoutClosingOnEarlyError, this, mapper);
-          return new IteratorProxy(getIteratorDirect(this), {
-            mapper,
-            inner: null
-          });
-        }
-      });
-    }
-  });
-
-  // node_modules/core-js/modules/esnext.iterator.flat-map.js
-  var require_esnext_iterator_flat_map = __commonJS({
-    "node_modules/core-js/modules/esnext.iterator.flat-map.js"() {
-      "use strict";
-      init_process();
-      require_es_iterator_flat_map();
-    }
-  });
-
-  // node_modules/json-dom/dist/domItem/traits/getNonSerializableKeys.js
+  // node_modules/treeloom/dist/domItem/traits/getNonSerializableKeys.js
   var require_getNonSerializableKeys = __commonJS({
-    "node_modules/json-dom/dist/domItem/traits/getNonSerializableKeys.js"(exports) {
+    "node_modules/treeloom/dist/domItem/traits/getNonSerializableKeys.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_flat_map();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -10597,14 +10374,12 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/deflate/removeEmptyProperties.js
+  // node_modules/treeloom/dist/deflate/removeEmptyProperties.js
   var require_removeEmptyProperties = __commonJS({
-    "node_modules/json-dom/dist/deflate/removeEmptyProperties.js"(exports) {
+    "node_modules/treeloom/dist/deflate/removeEmptyProperties.js"(exports) {
       "use strict";
       init_process();
       require_es_array_includes();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -10634,9 +10409,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/deflate/domItemToJson.js
+  // node_modules/treeloom/dist/deflate/domItemToJson.js
   var require_domItemToJson = __commonJS({
-    "node_modules/json-dom/dist/deflate/domItemToJson.js"(exports) {
+    "node_modules/treeloom/dist/deflate/domItemToJson.js"(exports) {
       "use strict";
       init_process();
       require_es_array_includes();
@@ -10671,9 +10446,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/deflate/index.js
+  // node_modules/treeloom/dist/deflate/index.js
   var require_deflate = __commonJS({
-    "node_modules/json-dom/dist/deflate/index.js"(exports) {
+    "node_modules/treeloom/dist/deflate/index.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -10693,13 +10468,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/diff/elementHasAttribute.js
+  // node_modules/treeloom/dist/diff/elementHasAttribute.js
   var require_elementHasAttribute = __commonJS({
-    "node_modules/json-dom/dist/diff/elementHasAttribute.js"(exports) {
+    "node_modules/treeloom/dist/diff/elementHasAttribute.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_map();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -10750,14 +10523,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/diff/domItemChanges.js
+  // node_modules/treeloom/dist/diff/domItemChanges.js
   var require_domItemChanges = __commonJS({
-    "node_modules/json-dom/dist/diff/domItemChanges.js"(exports) {
+    "node_modules/treeloom/dist/diff/domItemChanges.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_find();
-      require_esnext_iterator_reduce();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -10885,15 +10655,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/render/updateChildNodes.js
+  // node_modules/treeloom/dist/render/updateChildNodes.js
   var require_updateChildNodes = __commonJS({
-    "node_modules/json-dom/dist/render/updateChildNodes.js"(exports) {
+    "node_modules/treeloom/dist/render/updateChildNodes.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_find();
-      require_esnext_iterator_for_each();
-      require_esnext_iterator_map();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -10944,9 +10710,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/render/updateElement.js
+  // node_modules/treeloom/dist/render/updateElement.js
   var require_updateElement = __commonJS({
-    "node_modules/json-dom/dist/render/updateElement.js"(exports) {
+    "node_modules/treeloom/dist/render/updateElement.js"(exports) {
       "use strict";
       init_process();
       require_es_array_includes();
@@ -11034,9 +10800,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/render/generateElement.js
+  // node_modules/treeloom/dist/render/generateElement.js
   var require_generateElement = __commonJS({
-    "node_modules/json-dom/dist/render/generateElement.js"(exports) {
+    "node_modules/treeloom/dist/render/generateElement.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -11068,13 +10834,11 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/render/updateElements.js
+  // node_modules/treeloom/dist/render/updateElements.js
   var require_updateElements = __commonJS({
-    "node_modules/json-dom/dist/render/updateElements.js"(exports) {
+    "node_modules/treeloom/dist/render/updateElements.js"(exports) {
       "use strict";
       init_process();
-      require_esnext_iterator_constructor();
-      require_esnext_iterator_for_each();
       var __importDefault = function(mod) {
         return mod && mod.__esModule ? mod : {
           "default": mod
@@ -11100,9 +10864,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/render/renderHtml.js
+  // node_modules/treeloom/dist/render/renderHtml.js
   var require_renderHtml = __commonJS({
-    "node_modules/json-dom/dist/render/renderHtml.js"(exports) {
+    "node_modules/treeloom/dist/render/renderHtml.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -11119,8 +10883,8 @@ var jsonDomComponents = (() => {
       var setParentItemReferences_1 = __importDefault(require_setParentItemReferences());
       var updateChildNodes_1 = __importDefault(require_updateChildNodes());
       var updateElements_1 = __importDefault(require_updateElements());
-      var renderHtml = (item = null, parent = documentItem_1.default.body, index = parent.children.length) => {
-        const itemToRender = item === null ? documentItem_1.default : item;
+      var renderHtml = (item = null, parent = (0, documentItem_1.default)().body, index = parent.children.length) => {
+        const itemToRender = item === null ? (0, documentItem_1.default)() : item;
         (0, setParentItemReferences_1.default)(itemToRender);
         if (itemToRender.parentItem === null) {
           (0, insertChild_1.default)(parent, item, index);
@@ -11134,9 +10898,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/render/index.js
+  // node_modules/treeloom/dist/render/index.js
   var require_render = __commonJS({
-    "node_modules/json-dom/dist/render/index.js"(exports) {
+    "node_modules/treeloom/dist/render/index.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -11162,9 +10926,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/sync/index.js
+  // node_modules/treeloom/dist/sync/index.js
   var require_sync = __commonJS({
-    "node_modules/json-dom/dist/sync/index.js"(exports) {
+    "node_modules/treeloom/dist/sync/index.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -11186,9 +10950,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/diff/index.js
+  // node_modules/treeloom/dist/diff/index.js
   var require_diff = __commonJS({
-    "node_modules/json-dom/dist/diff/index.js"(exports) {
+    "node_modules/treeloom/dist/diff/index.js"(exports) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -11216,9 +10980,9 @@ var jsonDomComponents = (() => {
     }
   });
 
-  // node_modules/json-dom/dist/main.js
+  // node_modules/treeloom/dist/main.js
   var require_main3 = __commonJS({
-    "node_modules/json-dom/dist/main.js"(exports, module) {
+    "node_modules/treeloom/dist/main.js"(exports, module) {
       "use strict";
       init_process();
       var __importDefault = function(mod) {
@@ -11228,13 +10992,14 @@ var jsonDomComponents = (() => {
       };
       var index_1 = __importDefault(require_events());
       var index_2 = __importDefault(require_domItem());
+      var documentItem_1 = require_documentItem();
       var index_3 = __importDefault(require_inflate());
       var index_4 = __importDefault(require_deflate());
       var index_5 = __importDefault(require_render());
       var index_6 = __importDefault(require_sync());
       var index_7 = __importDefault(require_diff());
-      var jsonDom = Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default, index_7.default);
-      module.exports = jsonDom;
+      var treeloom = (0, documentItem_1.withDocumentItem)(Object.assign({}, index_1.default, index_2.default, index_3.default, index_4.default, index_5.default, index_6.default, index_7.default));
+      module.exports = treeloom;
     }
   });
 
@@ -11251,8 +11016,8 @@ var jsonDomComponents = (() => {
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
-      var json_dom_1 = __importDefault(require_main3());
-      var node = (nodeName, nodeValue = null, children = [], attributes = {}) => json_dom_1.default.createDomItem({
+      var treeloom_1 = __importDefault(require_main3());
+      var node = (nodeName, nodeValue = null, children = [], attributes = {}) => treeloom_1.default.createDomItem({
         nodeName,
         nodeValue,
         attributes,
@@ -12306,15 +12071,15 @@ var jsonDomComponents = (() => {
       var index_2 = __importDefault(require_components());
       var index_3 = __importDefault(require_typeahead());
       var root = typeof window !== "undefined" ? window : {};
-      var jsonDomComponents = {
+      var treeloomComponents = {
         ...index_2.default,
         ...index_3.default,
         ...index_1.default
       };
-      root.jsonDomComponents = jsonDomComponents;
-      module.exports = jsonDomComponents;
+      root.treeloomComponents = treeloomComponents;
+      module.exports = treeloomComponents;
     }
   });
   return require_main5();
 })();
-if (typeof module === 'object' && module && module.exports) { module.exports = jsonDomComponents }
+if (typeof module === 'object' && module && module.exports) { module.exports = treeloomComponents }

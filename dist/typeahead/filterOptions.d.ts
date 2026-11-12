@@ -1,4 +1,4 @@
-import type { DomItem } from 'json-dom/dist/domItem/types';
+import type { DomItem } from 'treeloom/dist/domItem/types';
 /**
  * Filter optionItems by whether their value or label text includes the search term (case-insensitive), hiding
  * everything else. Reveals the select (as a real dropdown, a few rows tall) once there is a real search term and

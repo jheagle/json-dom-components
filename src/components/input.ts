@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import element from './element'
-import type { Attributes, DomItem } from 'json-dom/dist/domItem/types'
+import type { Attributes, DomItem } from 'treeloom/dist/domItem/types'
 
 const input = (type: string = 'text', name: string = '', value: string | null = null, children: DomItem[] = [], className?: string, attributes: Attributes = {}): DomItem => {
   attributes.type = type
