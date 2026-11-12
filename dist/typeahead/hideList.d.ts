@@ -1,4 +1,4 @@
-import type { DomItem } from 'json-dom/dist/domItem/types';
+import type { DomItem } from 'treeloom/dist/domItem/types';
 /**
  * Collapse the options list: hidden again, back to a single visible row's worth of height.
  * @param selectItem

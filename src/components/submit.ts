@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import input from './input'
-import type { Attributes, DomItem } from 'json-dom/dist/domItem/types'
+import type { Attributes, DomItem } from 'treeloom/dist/domItem/types'
 
 const submit = (name: string = '', label: string = 'Submit', className?: string, attributes: Attributes = {}): DomItem => {
   attributes.value = label

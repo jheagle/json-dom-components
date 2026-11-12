@@ -1,4 +1,4 @@
-import type { DomItem } from 'json-dom/dist/domItem/types';
+import type { DomItem } from 'treeloom/dist/domItem/types';
 /**
  * Show the clear button when there's a value to clear, hide it when the input is empty.
  * @param hasValue

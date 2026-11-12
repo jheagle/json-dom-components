@@ -1,7 +1,7 @@
 {
-  "name": "json-dom-components",
+  "name": "treeloom-components",
   "private": true,
-  "description": "A minimal component library on json-dom: base HTML element factories plus richer interactive components.",
+  "description": "A minimal component library on treeloom: base HTML element factories plus richer interactive components.",
   "version": "0.1.0",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@babel/core": "^8.1.0",
     "js-build-tools": "^8.2.0",
-    "json-dom": "github:jheagle/JSON-DOM",
+    "treeloom": "^2.0.0",
     "release-it": "^21.1.1",
     "test-filesystem": "^2.0.0",
     "typedoc": "^0.28.20",
@@ -33,19 +33,19 @@
     "si-funciona": "^2.10.0"
   },
   "peerDependencies": {
-    "json-dom": ">=1.8.1"
+    "treeloom": "^2.0.0"
   },
   "directories": {
     "test": "tests"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jheagle/json-dom-components.git"
+    "url": "git+https://github.com/jheagle/treeloom-components.git"
   },
   "bugs": {
-    "url": "https://github.com/jheagle/json-dom-components/issues"
+    "url": "https://github.com/jheagle/treeloom-components/issues"
   },
-  "homepage": "https://github.com/jheagle/json-dom-components#readme",
+  "homepage": "https://github.com/jheagle/treeloom-components#readme",
   "standard": {
     "env": [
       "jest"

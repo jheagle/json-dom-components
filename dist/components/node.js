@@ -1,5 +1,8 @@
 "use strict";
 
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -8,7 +11,7 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-const json_dom_1 = __importDefault(require("json-dom"));
+const treeloom_1 = __importDefault(require("treeloom"));
 /**
  * Create the DomItem for any node, the base every other component builds on.
  * @param nodeName - Any document node name: a tag name, #text, #comment or #document.
@@ -16,7 +19,7 @@ const json_dom_1 = __importDefault(require("json-dom"));
  * @param children
  * @param attributes
  */
-const node = (nodeName, nodeValue = null, children = [], attributes = {}) => json_dom_1.default.createDomItem({
+const node = (nodeName, nodeValue = null, children = [], attributes = {}) => treeloom_1.default.createDomItem({
   nodeName,
   nodeValue,
   attributes,

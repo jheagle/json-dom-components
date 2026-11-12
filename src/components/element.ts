@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import node from './node'
-import type { Attributes, DomItem } from 'json-dom/dist/domItem/types'
+import type { Attributes, DomItem } from 'treeloom/dist/domItem/types'
 
 /**
  * Create the DomItem of a real HTML element.

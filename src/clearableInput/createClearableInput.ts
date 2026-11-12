@@ -7,7 +7,7 @@ import div from '../components/div'
 import input from '../components/input'
 import { makeClearInput } from './clearInput'
 import { makeToggleClearButton } from './toggleClearButton'
-import type { DomItem } from 'json-dom/dist/domItem/types'
+import type { DomItem } from 'treeloom/dist/domItem/types'
 import type { ClearableInputConfig } from './types'
 
 /**
@@ -15,7 +15,7 @@ import type { ClearableInputConfig } from './types'
  * pattern. The button only shows once there's a value to clear.
  *
  * Minimum/POC implementation: like the typeahead, its listeners are plain closures, not names registered for
- * json-dom's render-only/forwarding mode. See MAIN.md.
+ * treeloom's render-only/forwarding mode. See MAIN.md.
  */
 const createClearableInput = (config: ClearableInputConfig): DomItem => {
   const { name, value = '', placeholder = '', className, readonly = false } = config

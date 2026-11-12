@@ -1,4 +1,4 @@
-import type { Attributes, DomItem } from 'json-dom/dist/domItem/types';
+import type { Attributes, DomItem } from 'treeloom/dist/domItem/types';
 /**
  * Create the DomItem for any node, the base every other component builds on.
  * @param nodeName - Any document node name: a tag name, #text, #comment or #document.

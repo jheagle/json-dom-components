@@ -4,7 +4,7 @@
 
 import node from './node'
 import text from './text'
-import type { DomItem } from 'json-dom/dist/domItem/types'
+import type { DomItem } from 'treeloom/dist/domItem/types'
 
 const style = (styleContent: string = ''): DomItem => node('style', null, [text(styleContent)])
 

@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import jsonDom from 'json-dom'
-import type { Attributes, DomItem } from 'json-dom/dist/domItem/types'
+import treeloom from 'treeloom'
+import type { Attributes, DomItem } from 'treeloom/dist/domItem/types'
 
 /**
  * Create the DomItem for any node, the base every other component builds on.
@@ -13,6 +13,6 @@ import type { Attributes, DomItem } from 'json-dom/dist/domItem/types'
  * @param attributes
  */
 const node = (nodeName: string, nodeValue: string | null = null, children: DomItem[] = [], attributes: Attributes = {}): DomItem =>
-  jsonDom.createDomItem({ nodeName, nodeValue, attributes, children })
+  treeloom.createDomItem({ nodeName, nodeValue, attributes, children })
 
 export default node

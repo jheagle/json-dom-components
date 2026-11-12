@@ -1,5 +1,8 @@
 "use strict";
 
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -18,7 +21,7 @@ const toggleClearButton_1 = require("./toggleClearButton");
  * pattern. The button only shows once there's a value to clear.
  *
  * Minimum/POC implementation: like the typeahead, its listeners are plain closures, not names registered for
- * json-dom's render-only/forwarding mode. See MAIN.md.
+ * treeloom's render-only/forwarding mode. See MAIN.md.
  */
 const createClearableInput = config => {
   const {

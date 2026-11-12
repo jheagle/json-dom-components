@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 /**
- * A minimal component library on json-dom: base HTML element factories plus richer interactive components.
+ * A minimal component library on treeloom: base HTML element factories plus richer interactive components.
  */
 import clearableInput from './clearableInput/index'
 import components from './components/index'
@@ -14,12 +14,12 @@ import typeahead from './typeahead/index'
  */
 const root = (typeof window !== 'undefined' ? window : {}) as unknown as Record<string, unknown>
 
-const jsonDomComponents = {
+const treeloomComponents = {
   ...components,
   ...typeahead,
   ...clearableInput
 }
 
-root.jsonDomComponents = jsonDomComponents
+root.treeloomComponents = treeloomComponents
 
-export = jsonDomComponents
+export = treeloomComponents
