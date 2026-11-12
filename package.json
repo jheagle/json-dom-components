@@ -1,16 +1,24 @@
 {
   "name": "treeloom-components",
-  "private": true,
   "description": "A minimal component library on treeloom: base HTML element factories plus richer interactive components.",
   "version": "0.1.0",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "author": "Joshua Heagle",
   "license": "MPL-2.0",
+  "keywords": [
+    "components",
+    "treeloom",
+    "typeahead",
+    "dom",
+    "ui",
+    "typescript"
+  ],
   "scripts": {
     "build": "gulp build",
     "dev": "gulp",
     "docs": "gulp docs",
+    "prepublishOnly": "npm run build",
     "release": "release-it",
     "release:dry-run": "release-it --dry-run",
     "test": "gulp testFull",
@@ -30,11 +38,17 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
+    "core-js": "^3.51.0",
     "si-funciona": "^2.10.0"
   },
   "peerDependencies": {
     "treeloom": "^2.0.0"
   },
+  "files": [
+    "dist",
+    "browser",
+    "styles"
+  ],
   "directories": {
     "test": "tests"
   },

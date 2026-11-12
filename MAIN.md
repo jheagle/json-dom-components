@@ -58,7 +58,14 @@ not yet forwarding-safe.
 
 Include `styles/clearableInput.css` for the button's positioning.
 
-## Status
+## Install
 
-Not published to npm (not an npm package) - versioned via git tags/GitHub Releases only (`npm run release`).
-Not yet wired into `quizzes`/`workout-planner`/the website - that's the next step, once this is reviewed.
+treeloom is a **peer dependency** (the components are treeloom items, so there must be exactly one copy of treeloom),
+so install it too:
+
+```shell
+npm install treeloom treeloom-components
+```
+
+The stylesheets are in the package's `styles/` folder (`styles/typeahead.css`, `styles/clearableInput.css`). It is
+written in TypeScript and ships its types.
