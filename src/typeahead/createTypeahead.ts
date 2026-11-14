@@ -6,55 +6,65 @@ import div from '../components/div'
 import input from '../components/input'
 import option from '../components/option'
 import select from '../components/select'
-import { makeFilterOptions } from './filterOptions'
-import { makeHideList } from './hideList'
-import { makeSelectOption } from './selectOption'
+import {
+  makeFocusout,
+  makeListChange,
+  makeListClick,
+  makeListKeydown,
+  makeListMousedown,
+  makeSearchKeydown,
+  makeSearchKeyup
+} from './listeners'
 import type { DomItem } from 'treeloom/dist/domItem/types'
-import type { TypeaheadConfig } from './types'
+import type { TypeaheadConfig, TypeaheadParts } from './types'
 
 /**
- * A typeahead: a free-text input that filters a list of options as you type, and a (visually hidden until
- * needed) select carrying the real options and the real submitted value - picking one from the filtered list
- * copies its label back into the free-text input and collapses the list again.
- *
- * Ported from a PHP Blade reference implementation, reusing its two-field shape (visible free-type input +
- * collapsed select holding the real value) and its filtering rules (case-insensitive match on value or label,
- * list only expands once there are 2+ characters typed and at least one match) - but wired through treeloom's
- * own DomItem tree (via eventListeners set directly on each item, bound automatically on render) instead of
- * attaching to the real DOM by hand.
- *
- * This is a minimum/POC implementation: listeners are plain closures, not names registered for treeloom's
- * render-only/forwarding mode - fine for a component built and rendered locally, not yet for one whose events
- * need forwarding across a socket. See MAIN.md.
+ * Build a filterable select: a free-type input to type into, and the real <select> (the field a form submits), hidden
+ * until 2+ typed characters match something. With a pointer: click a match. With keys: Down arrow into the list,
+ * arrows to move, Enter to pick, Escape to close. Editing the text after a pick un-picks it, and an untouched
+ * typeahead submits '' (a hidden, empty first option), never whichever option the browser happened to select.
+ * @param config
+ * @returns The typeahead's container item.
  */
 const createTypeahead = (config: TypeaheadConfig): DomItem => {
-  const { name, options, value = '', placeholder = '', className, readonly = false } = config
-
+  const { name, options, value = '', placeholder = '', label, className, readonly = false } = config
   const selected = options.find(candidate => candidate.value === value)
-
+  const emptyOption = option('', '', undefined, { hidden: true, ...(selected ? {} : { selected: true }) })
   const optionItems = options.map(choice => option(choice.value, choice.label, undefined, choice.value === value ? { selected: true } : {}))
-
   const freeTypeInput = input('text', `${name}-search`, selected ? selected.label : '', [], 'typeahead-search', {
     placeholder,
+    autocomplete: 'off',
+    ...(label ? { 'aria-label': label } : {}),
     ...(readonly ? { readonly: true } : {})
   })
-
-  const selectItem = select(optionItems, 'typeahead-options', {
+  const selectItem = select([emptyOption, ...optionItems], 'typeahead-options', {
     name,
     hidden: true,
     size: 1,
-    ...(value ? { value } : {}),
+    ...(label ? { 'aria-label': `${label} matches` } : {}),
+    ...(selected ? { value } : {}),
     ...(readonly ? { disabled: true } : {})
   })
-
+  const wrapper = div([freeTypeInput, selectItem], className ?? 'typeahead')
   if (!readonly) {
-    freeTypeInput.eventListeners.keyup = [{ listenerFunc: makeFilterOptions(optionItems, selectItem) }]
-    freeTypeInput.eventListeners.blur = [{ listenerFunc: makeHideList(selectItem) }]
-    selectItem.eventListeners.change = [{ listenerFunc: makeSelectOption(options, freeTypeInput, selectItem) }]
-    selectItem.eventListeners.blur = [{ listenerFunc: makeHideList(selectItem) }]
+    const parts: TypeaheadParts = {
+      options,
+      optionItems,
+      emptyOption,
+      freeTypeInput,
+      selectItem,
+      wrapper,
+      state: { committed: selected ? selected.value : '', pointerInList: false, usingKeys: false }
+    }
+    freeTypeInput.eventListeners.keyup = [{ listenerFunc: makeSearchKeyup(parts) }]
+    freeTypeInput.eventListeners.keydown = [{ listenerFunc: makeSearchKeydown(parts) }]
+    selectItem.eventListeners.keydown = [{ listenerFunc: makeListKeydown(parts) }]
+    selectItem.eventListeners.mousedown = [{ listenerFunc: makeListMousedown(parts) }]
+    selectItem.eventListeners.click = [{ listenerFunc: makeListClick(parts) }]
+    selectItem.eventListeners.change = [{ listenerFunc: makeListChange(parts) }]
+    wrapper.eventListeners.focusout = [{ listenerFunc: makeFocusout(parts) }]
   }
-
-  return div([freeTypeInput, selectItem], className ?? 'typeahead')
+  return wrapper
 }
 
 export default createTypeahead
