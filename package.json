@@ -1,7 +1,7 @@
 {
   "name": "treeloom-components",
   "description": "A minimal component library on treeloom: base HTML element factories plus richer interactive components.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "author": "Joshua Heagle",
