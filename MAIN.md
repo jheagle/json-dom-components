@@ -40,7 +40,7 @@ instead of attaching to the real DOM by hand.
 **Known POC limitation:** the typeahead's listeners are plain closures (`listenerFunc` set directly to a
 function), not names registered through treeloom's `registerListener`. That's fine for a component rendered
 and used locally, but it means this component's events can't currently be forwarded across treeloom's
-render-only/socket mode (see battleship's own remote play for what that mode looks like) - revisit if a
+render-only/socket mode (see Cloakfall's own remote play for what that mode looks like) - revisit if a
 consumer ever needs that.
 
 Include `styles/typeahead.css` for the dropdown positioning - the show/hide behaviour itself needs no CSS, it's
