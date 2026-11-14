@@ -12,6 +12,7 @@ import {
   makeListClick,
   makeListKeydown,
   makeListMousedown,
+  makeListMouseup,
   makeSearchKeydown,
   makeSearchKeyup
 } from './listeners'
@@ -21,8 +22,9 @@ import type { TypeaheadConfig, TypeaheadParts } from './types'
 /**
  * Build a filterable select: a free-type input to type into, and the real <select> (the field a form submits), hidden
  * until 2+ typed characters match something. With a pointer: click a match. With keys: Down arrow into the list,
- * arrows to move, Enter to pick, Escape to close. Editing the text after a pick un-picks it, and an untouched
- * typeahead submits '' (a hidden, empty first option), never whichever option the browser happened to select.
+ * arrows to move, Enter to pick (in the input: the option with exactly that label), Escape to close. Editing the
+ * text after a pick un-picks it, and an untouched typeahead submits '' (a hidden, empty first option), never
+ * whichever option the browser happened to select.
  * @param config
  * @returns The typeahead's container item.
  */
@@ -60,6 +62,7 @@ const createTypeahead = (config: TypeaheadConfig): DomItem => {
     freeTypeInput.eventListeners.keydown = [{ listenerFunc: makeSearchKeydown(parts) }]
     selectItem.eventListeners.keydown = [{ listenerFunc: makeListKeydown(parts) }]
     selectItem.eventListeners.mousedown = [{ listenerFunc: makeListMousedown(parts) }]
+    selectItem.eventListeners.mouseup = [{ listenerFunc: makeListMouseup(parts) }]
     selectItem.eventListeners.click = [{ listenerFunc: makeListClick(parts) }]
     selectItem.eventListeners.change = [{ listenerFunc: makeListChange(parts) }]
     wrapper.eventListeners.focusout = [{ listenerFunc: makeFocusout(parts) }]

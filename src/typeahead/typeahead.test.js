@@ -8,6 +8,7 @@
 
 import treeloom from 'treeloom'
 import createTypeahead from './createTypeahead'
+import selectOption from './selectOption'
 
 const options = [
   { value: 'apple', label: 'Apple' },
@@ -91,11 +92,11 @@ describe('createTypeahead', () => {
     expect(item.eventListeners.focusout).toBeUndefined()
   })
 
-  test('wires the input (keyup, keydown), the list (keydown, mousedown, click, change) and focusout on the whole', () => {
+  test('wires the input (keyup, keydown), the list (keydown, mousedown, mouseup, click, change) and focusout on the whole', () => {
     const item = createTypeahead({ name: 'fruit', options })
     const [freeTypeInput, selectItem] = item.children
     expect(Object.keys(freeTypeInput.eventListeners).sort()).toEqual(['keydown', 'keyup'])
-    expect(Object.keys(selectItem.eventListeners).sort()).toEqual(['change', 'click', 'keydown', 'mousedown'])
+    expect(Object.keys(selectItem.eventListeners).sort()).toEqual(['change', 'click', 'keydown', 'mousedown', 'mouseup'])
     expect(Object.keys(item.eventListeners)).toEqual(['focusout'])
   })
 })
@@ -222,5 +223,105 @@ describe('typeahead in a page', () => {
     type('Applx')
     expect(list.hidden).toBe(true)
     expect(submitted()).toBe('')
+  })
+
+  test('Enter in the input picks the option with exactly that label (any case), and never submits the form', () => {
+    const { type, search, list, submitted } = render()
+    type(' apricot ')
+    const enter = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true })
+    expect(search.dispatchEvent(enter)).toBe(false)
+    expect(search.value).toBe('Apricot')
+    expect(submitted()).toBe('apricot')
+    expect(list.hidden).toBe(true)
+  })
+
+  test('Enter in the input without an exact label moves into the list instead of submitting', () => {
+    const { type, search, list } = render()
+    type('ap')
+    const enter = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true })
+    expect(search.dispatchEvent(enter)).toBe(false)
+    expect(document.activeElement).toBe(list)
+    expect(list.value).toBe('apple')
+    expect(list.hidden).toBe(false)
+  })
+
+  test('with the list closed, Enter in the input is left alone (the form submits the current pick)', () => {
+    const { search } = render()
+    const enter = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true })
+    expect(search.dispatchEvent(enter)).toBe(true)
+  })
+
+  test('a press on the list that picks nothing (scrollbar, blank space) does not keep it open later', () => {
+    const { type, moveFocus, search, list } = render()
+    type('ap')
+    list.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+    list.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    moveFocus(search, null)
+    expect(list.hidden).toBe(true)
+  })
+
+  test('a press dragged off the list (no mouseup on it) does not keep it open once the list loses focus', () => {
+    const { type, moveFocus, search, list } = render()
+    type('ap')
+    list.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+    moveFocus(search, list)
+    moveFocus(list, null)
+    expect(list.hidden).toBe(true)
+  })
+
+  test('Safari: the press keeps the list open only once, so a later click away still closes it', () => {
+    const { type, moveFocus, search, list } = render()
+    type('ap')
+    list.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+    moveFocus(search, null)
+    expect(list.hidden).toBe(false)
+    search.focus()
+    moveFocus(search, null)
+    expect(list.hidden).toBe(true)
+  })
+
+  test("after a pick, the items' selected flags match it (so a re-render agrees with the real field)", () => {
+    const { item, type, press, search, list } = render({ value: 'banana' })
+    type('apr')
+    press(search, 'ArrowDown')
+    press(list, 'Enter')
+    const selectItem = item.children[1]
+    const flagged = selectItem.children.filter(optionItem => optionItem.attributes.selected).map(optionItem => optionItem.attributes.value)
+    expect(flagged).toEqual(['apricot'])
+    expect(selectItem.attributes.value).toBe('apricot')
+  })
+})
+
+describe('selectOption', () => {
+  const partsFor = config => {
+    const item = createTypeahead({ name: 'fruit', options, ...config })
+    const [freeTypeInput, selectItem] = item.children
+    return {
+      options,
+      emptyOption: selectItem.children[0],
+      optionItems: selectItem.children.slice(1),
+      freeTypeInput,
+      selectItem,
+      wrapper: item,
+      state: { committed: config.value ?? '', pointerInList: false, usingKeys: false }
+    }
+  }
+
+  test('copies the label onto the input, records the pick and collapses the list', () => {
+    const parts = partsFor({})
+    parts.selectItem.attributes.hidden = false
+    selectOption('apricot', parts)
+    expect(parts.freeTypeInput.attributes.value).toBe('Apricot')
+    expect(parts.selectItem.attributes.value).toBe('apricot')
+    expect(parts.state.committed).toBe('apricot')
+    expect(parts.selectItem.attributes.hidden).toBe(true)
+  })
+
+  test('a value matching nothing picks nothing: the input and the select are cleared', () => {
+    const parts = partsFor({ value: 'apple' })
+    selectOption('does-not-exist', parts)
+    expect(parts.freeTypeInput.attributes.value).toBe('')
+    expect(parts.selectItem.attributes.value).toBe('')
+    expect(parts.state.committed).toBe('')
   })
 })

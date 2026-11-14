@@ -68,18 +68,29 @@ export const makeSearchKeyup = (parts: TypeaheadParts) => (event: Event): void =
 }
 
 /**
- * keydown on the free-type input: Down arrow moves into the list (highlighting its first match), Escape closes it.
+ * keydown on the free-type input, while the list is open: Down arrow moves into the list (highlighting its first
+ * match), Escape closes it, and Enter picks the option whose label is exactly the text (ignoring case and spaces at
+ * the ends) or else moves into the list - never the form's own submit with nothing picked. With the list closed,
+ * every key does what it normally does (Enter submits the form with the current pick).
  * @param parts
  */
 export const makeSearchKeydown = (parts: TypeaheadParts) => (event: Event): void => {
   const { key } = event as KeyboardEvent
-  if (!isListShown(parts) || (key !== 'ArrowDown' && key !== 'Escape')) {
+  if (!isListShown(parts) || !['ArrowDown', 'Escape', 'Enter'].includes(key)) {
     return
   }
   event.preventDefault()
   if (key === 'Escape') {
     closeList(parts)
     return
+  }
+  if (key === 'Enter') {
+    const text = (searchElement(parts)?.value ?? '').trim().toLowerCase()
+    const exact = parts.options.find(candidate => candidate.label.trim().toLowerCase() === text)
+    if (exact) {
+      pickFromList(parts, exact.value)
+      return
+    }
   }
   const list = listElement(parts)
   if (list) {
@@ -108,13 +119,22 @@ export const makeListKeydown = (parts: TypeaheadParts) => (event: Event): void =
 }
 
 /**
- * mousedown on the list: a pointer is choosing, so the input losing focus must not close the list (Safari does not
- * focus a clicked select, so focusout cannot tell).
+ * mousedown on the list: a pointer is choosing, so the input losing focus to nowhere must not close the list (Safari
+ * does not focus a clicked select, so focusout cannot tell it from a click away). See makeFocusout.
  * @param parts
  */
 export const makeListMousedown = (parts: TypeaheadParts) => (): void => {
   parts.state.pointerInList = true
   parts.state.usingKeys = false
+}
+
+/**
+ * mouseup on the list: the press is over (a click on an option, which picks, comes next). Clearing the flag here
+ * means a press that picks nothing (the scrollbar, blank list space) cannot keep the list open later.
+ * @param parts
+ */
+export const makeListMouseup = (parts: TypeaheadParts) => (): void => {
+  parts.state.pointerInList = false
 }
 
 /**
@@ -142,13 +162,20 @@ export const makeListChange = (parts: TypeaheadParts) => (event: Event): void =>
 
 /**
  * focusout on the whole typeahead: close the list once focus leaves it (moving between the input and the list keeps
- * it open), unless a pointer is still choosing in the list.
+ * it open). One exception, for Safari: the input losing focus to nowhere during a press on the list (Safari does not
+ * focus a clicked select). That only counts once, and only from the input: a press which never ended on the list
+ * (dragged off it) cannot keep it open when the list itself loses focus later.
  * @param parts
  */
 export const makeFocusout = (parts: TypeaheadParts) => (event: Event): void => {
   const next = (event as FocusEvent).relatedTarget as Node | null
   const wrapper = parts.wrapper.element as unknown as HTMLElement | null
-  if ((next && wrapper && wrapper.contains(next)) || parts.state.pointerInList) {
+  if (next && wrapper && wrapper.contains(next)) {
+    return
+  }
+  const pressingList = parts.state.pointerInList && next === null && event.target === searchElement(parts)
+  parts.state.pointerInList = false
+  if (pressingList) {
     return
   }
   closeList(parts)
