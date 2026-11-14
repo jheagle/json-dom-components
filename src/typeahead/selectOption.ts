@@ -3,35 +3,24 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import hideList from './hideList'
-import type { DomItem } from 'treeloom/dist/domItem/types'
-import type { TypeaheadOption } from './types'
+import type { TypeaheadParts } from './types'
 
 /**
- * A pick was made (directly, or via the select's own change event): copy the matching option's label back into
- * the free-type input's real value and its attributes (so it stays correct across a re-render), then collapse
- * the list again.
+ * Pick an option: the select takes its value (what the form submits), its label goes into the free-type input
+ * (attributes and real value, so it stays correct across a re-render) and the list collapses. A value matching
+ * nothing picks nothing: the input and the select are cleared.
  * @param selectedValue
- * @param options
- * @param freeTypeInput
- * @param selectItem
+ * @param parts
  */
-const selectOption = (selectedValue: string, options: TypeaheadOption[], freeTypeInput: DomItem, selectItem: DomItem): void => {
-  const matched = options.find(candidate => candidate.value === selectedValue)
+const selectOption = (selectedValue: string, parts: TypeaheadParts): void => {
+  const matched = parts.options.find(candidate => candidate.value === selectedValue)
   const displayValue = matched ? matched.label : ''
-  freeTypeInput.attributes.value = displayValue
-  if (freeTypeInput.element) {
-    (freeTypeInput.element as unknown as HTMLInputElement).value = displayValue
+  parts.freeTypeInput.attributes.value = displayValue
+  if (parts.freeTypeInput.element) {
+    (parts.freeTypeInput.element as unknown as HTMLInputElement).value = displayValue
   }
-  hideList(selectItem)
+  parts.state.committed = matched ? matched.value : ''
+  hideList(parts)
 }
-
-/**
- * A ready-to-attach change listener for the select: reads its real current value and applies the pick.
- * @param options
- * @param freeTypeInput
- * @param selectItem
- */
-export const makeSelectOption = (options: TypeaheadOption[], freeTypeInput: DomItem, selectItem: DomItem) =>
-  (event: Event): void => selectOption((event.target as HTMLSelectElement).value, options, freeTypeInput, selectItem)
 
 export default selectOption

@@ -27,10 +27,18 @@ Each one returns a `DomItem` - compose them the same way you would real HTML, th
 
 ## Typeahead (`src/typeahead`)
 
-`createTypeahead({ name, options, value?, placeholder?, className?, readonly? })` builds a filterable select: a
-free-type input you type into to filter a list of options, and the real `<select>` (visually collapsed until
-there's a match) that holds the actual submitted value. Picking an option copies its label back into the
-free-type input and collapses the list again.
+`createTypeahead({ name, options, value?, placeholder?, label?, className?, readonly? })` builds a filterable
+select: a free-type input you type into to filter a list of options, and the real `<select>` (hidden until there's
+a match) that holds the actual submitted value. The open list holds only the matches. Picking an option copies its
+label back into the free-type input and collapses the list again.
+
+- **Pointer:** click a match. On a phone, the browser's own picker works too.
+- **Keys:** Down arrow (or Tab) moves into the list, arrows move the highlight, Enter picks, Escape closes the list
+  without picking. Moving between the input and the list keeps it open; focus leaving the whole typeahead closes it.
+- **The submitted value** is only ever a real pick: untouched, it submits `''` (a hidden, empty first option), and
+  editing the text after a pick un-picks it. A highlight is not a pick: closing the list puts the last pick back.
+- **`label`** names the input (`aria-label`) and the list (`"<label> matches"`). Leave it out when the page labels
+  the input itself.
 
 Ported from a PHP Blade reference implementation - same two-field shape, same filtering rule (case-insensitive
 match on value or label text, list only expands once 2+ characters are typed and something matches) - but
