@@ -3,9 +3,11 @@
     "name": "treeloomComponents"
   },
   "docs": {
+    "bodyHtml": "<script data-goatcounter=\"https://joshuaheagle.goatcounter.com/count\" async src=\"//gc.zgo.at/count.js\"></script>",
     "enabled": true,
     "from": "src",
     "index": "MAIN.md",
+    "to": "../joshuaheagle.local/projects/treeloom-components/docs",
     "inBuild": false,
     "gitRevision": "main"
   },
